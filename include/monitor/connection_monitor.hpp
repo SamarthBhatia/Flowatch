@@ -6,20 +6,27 @@
 #include <pcap.h>
 #include "rules/rule_manager.hpp"
 
-namespace Firewall{
-    class ConnectionMonitor{
-        public:
-            ConnectionMonitor();
-            ~ConnectionMonitor();
+namespace Firewall {
 
-            bool start();
-            void stop();
-            bool isRunning() const;
-        private:
-            static void packetCallback(u_char* user, const struct pcap_pkthdr* pkthdr, const u_char* packet);
-            void processPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet);
-            pcap_t* handle_;
-            bool running_;
-            std::unique_ptr<RuleManager> ruleManager_;
-    }; 
-}
+    class ConnectionMonitor {
+    public:
+        ConnectionMonitor();
+        ~ConnectionMonitor();
+    
+        bool start();
+        void stop();
+        bool isRunning() const;
+    
+    private:
+        static void packetCallback(u_char* user, const struct pcap_pkthdr* pkthdr, const u_char* packet);
+        void processPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet);
+        
+    public:
+        static void staticPacketCallback(u_char* user, const struct pcap_pkthdr* pkthdr, const u_char* packet);
+    
+        pcap_t* handle_;
+        bool running_;
+        std::unique_ptr<RuleManager> ruleManager_;
+    };
+    
+    }

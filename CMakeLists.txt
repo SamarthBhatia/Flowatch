@@ -4,20 +4,24 @@ project(network_firewall VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-#Find the required packages
-find_package(PkgConfig REQURED)
-pkg_check_modules(LIBPCAP REQUIRED libpcap)
-find_package(nlohmann_json 3.2.0 REQUIRED)
-find_package(spdlog REQUIRED)
+# Add the spdlog submodule
+add_subdirectory(extern/spdlog)
 
-#Add the subdirectories
+# Add the nlohmann/json submodule (if you're using it)
+add_subdirectory(extern/json)
+
+# Find other required packages
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBPCAP REQUIRED libpcap)
+
+# Add the subdirectories
 add_subdirectory(src)
 add_subdirectory(tests)
 
-#Main executable
+# Main executable
 add_executable(firewall src/main.cpp)
 
-#Link libraries
+# Link libraries
 target_link_libraries(firewall
     PRIVATE
     ${LIBPCAP_LIBRARIES}
@@ -26,15 +30,14 @@ target_link_libraries(firewall
     firewall_lib
 )
 
-
-#Include directories
+# Include directories
 target_include_directories(firewall
     PRIVATE
     ${PROJECT_SOURCE_DIR}/include
     ${LIBPCAP_INCLUDE_DIRS}
 )
 
-#src/CMakeLists.txt
+# src/CMakeLists.txt
 add_library(firewall_lib
     monitor/connection_monitor.cpp 
     monitor/packet_analyzer.cpp 

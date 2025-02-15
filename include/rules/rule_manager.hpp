@@ -30,5 +30,5 @@ class RuleManager{
         std::vector<Rule> rules_;
         nlohmann::json rulesJson_;
 };
-
 }
+
