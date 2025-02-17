@@ -1,62 +1,75 @@
 cmake_minimum_required(VERSION 3.15)
-project(network_firewall VERSION 1.0)
+project(flowatch VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Add the spdlog submodule
+# Set options for dependencies
+set(SPDLOG_BUILD_EXAMPLES OFF CACHE BOOL "")
+set(SPDLOG_BUILD_TESTS OFF CACHE BOOL "")
 add_subdirectory(extern/spdlog)
 
-# Add the nlohmann/json submodule (if you're using it)
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+set(JSON_Install OFF CACHE INTERNAL "")
 add_subdirectory(extern/json)
 
-# Find other required packages
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(LIBPCAP REQUIRED libpcap)
+# Use system-installed libpcap
+find_path(PCAP_INCLUDE_DIR pcap.h PATHS /opt/homebrew/include /usr/local/include)
+find_library(PCAP_LIBRARY NAMES pcap PATHS /opt/homebrew/lib /usr/local/lib)
 
-# Add the subdirectories
-add_subdirectory(src)
-add_subdirectory(tests)
+if(NOT PCAP_INCLUDE_DIR OR NOT PCAP_LIBRARY)
+    message(FATAL_ERROR "libpcap not found. Install it with 'brew install libpcap'.")
+endif()
 
-# Main executable
-add_executable(firewall src/main.cpp)
-
-# Link libraries
-target_link_libraries(firewall
-    PRIVATE
-    ${LIBPCAP_LIBRARIES}
-    nlohmann_json::nlohmann_json
-    spdlog::spdlog
-    firewall_lib
+add_library(libpcap UNKNOWN IMPORTED)
+set_target_properties(libpcap PROPERTIES
+    IMPORTED_LOCATION ${PCAP_LIBRARY}
+    INTERFACE_INCLUDE_DIRECTORIES ${PCAP_INCLUDE_DIR}
 )
+
+
+
+# Define source files
+set(SOURCES
+    src/main.cpp
+    src/cli/interface.cpp
+    src/monitor/connection_monitor.cpp
+)
+
+# Debugging: Print the full path of each source file
+foreach(SOURCE_FILE ${SOURCES})
+    message(STATUS "Looking for: ${PROJECT_SOURCE_DIR}/${SOURCE_FILE}")
+endforeach()
+
+# Check if source files exist
+foreach(SOURCE_FILE ${SOURCES})
+    if(NOT EXISTS ${PROJECT_SOURCE_DIR}/${SOURCE_FILE})
+        message(FATAL_ERROR "Source file not found: ${PROJECT_SOURCE_DIR}/${SOURCE_FILE}")
+    endif()
+endforeach()
+
+# Create executable
+add_executable(firewall ${SOURCES})
 
 # Include directories
 target_include_directories(firewall
     PRIVATE
     ${PROJECT_SOURCE_DIR}/include
-    ${LIBPCAP_INCLUDE_DIRS}
+    ${PROJECT_SOURCE_DIR}/extern/spdlog/include
+    ${PROJECT_SOURCE_DIR}/extern/json/include
+    ${PCAP_INCLUDE_DIRS}
 )
 
-# src/CMakeLists.txt
-add_library(firewall_lib
-    monitor/connection_monitor.cpp 
-    monitor/packet_analyzer.cpp 
-    monitor/bandwidth_controller.cpp
-    rules/rule_manager.cpp 
-    rules/rule_parser.cpp 
-    profiling/app_fingerprint.cpp 
-    profiling/behavior_analyzer.cpp 
-    profiling/anomaly_detector.cpp 
-    geo/geo_analyzer.cpp 
-    geo/ip_mapper.cpp 
-    categorization/traffic_classifier.cpp 
-    categorization/usage_stats.cpp 
-    cli/interface.cpp 
-    utils/logger.cpp 
-    utils/config.cpp
+# Link libraries
+target_link_libraries(firewall
+    PRIVATE
+    libpcap
+    spdlog::spdlog
+    nlohmann_json::nlohmann_json
 )
 
-target_include_directories(firewall_lib
-    PUBLIC
-    ${PROJECT_SOURCE_DIR}/include
-)
+
+# Set output directories
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)

@@ -24,7 +24,7 @@ class RuleManager{
         bool saveRules(const std::string& filename);
         bool addRule(const RuleManager& rule);
         bool removeRule(const std::string& application);
-        bool evaluateConnection(const std::String& app,const std::string& address, int port);
+        bool evaluateConnection(const std::string& app,const std::string& address, int port);
     
     private:
         std::vector<Rule> rules_;
