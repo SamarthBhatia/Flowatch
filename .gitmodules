@@ -1,0 +1,9 @@
+[submodule "extern/json"]
+	path = extern/json
+	url = https://github.com/nlohmann/json.git
+[submodule "extern/spdlog"]
+	path = extern/spdlog
+	url = https://github.com/gabime/spdlog.git
+[submodule "extern/libpcap"]
+	path = extern/libpcap
+	url = https://github.com/the-tcpdump-group/libpcap.git
