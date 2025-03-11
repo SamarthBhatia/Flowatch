@@ -14,7 +14,7 @@ namespace Firewall{
             template<typename T>
             T get(const std::string& key, const T& defaultValue) const;
             
-            template<typename T:
+            template<typename T>
             void set(const std::string& key, const T& value);
         
         private:

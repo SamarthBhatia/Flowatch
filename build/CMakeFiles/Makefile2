@@ -130,12 +130,12 @@ extern/spdlog/clean: extern/spdlog/CMakeFiles/spdlog.dir/clean
 CMakeFiles/firewall.dir/all: extern/spdlog/CMakeFiles/spdlog.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/firewall.dir/build.make CMakeFiles/firewall.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/firewall.dir/build.make CMakeFiles/firewall.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/samarthbhatia/Developer/Systems/flowatch/build/CMakeFiles --progress-num=1,2,3,4 "Built target firewall"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/samarthbhatia/Developer/Systems/flowatch/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target firewall"
 .PHONY : CMakeFiles/firewall.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/firewall.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/samarthbhatia/Developer/Systems/flowatch/build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/samarthbhatia/Developer/Systems/flowatch/build/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/firewall.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/samarthbhatia/Developer/Systems/flowatch/build/CMakeFiles 0
 .PHONY : CMakeFiles/firewall.dir/rule
@@ -161,7 +161,7 @@ CMakeFiles/firewall.dir/clean:
 extern/spdlog/CMakeFiles/spdlog.dir/all:
 	$(MAKE) $(MAKESILENT) -f extern/spdlog/CMakeFiles/spdlog.dir/build.make extern/spdlog/CMakeFiles/spdlog.dir/depend
 	$(MAKE) $(MAKESILENT) -f extern/spdlog/CMakeFiles/spdlog.dir/build.make extern/spdlog/CMakeFiles/spdlog.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/samarthbhatia/Developer/Systems/flowatch/build/CMakeFiles --progress-num=5,6,7,8,9,10,11,12 "Built target spdlog"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/samarthbhatia/Developer/Systems/flowatch/build/CMakeFiles --progress-num=7,8,9,10,11,12,13,14 "Built target spdlog"
 .PHONY : extern/spdlog/CMakeFiles/spdlog.dir/all
 
 # Build rule for subdir invocation for target.

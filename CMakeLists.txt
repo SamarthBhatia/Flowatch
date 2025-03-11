@@ -34,6 +34,8 @@ set(SOURCES
     src/main.cpp
     src/cli/interface.cpp
     src/monitor/connection_monitor.cpp
+    src/utils/logger.cpp
+    src/rules/rule_manager.cpp
 )
 
 # Debugging: Print the full path of each source file

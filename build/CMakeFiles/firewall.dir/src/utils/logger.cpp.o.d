@@ -1,8 +1,7 @@
-extern/spdlog/CMakeFiles/spdlog.dir/src/async.cpp.o: \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/src/async.cpp \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/async.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/async_logger.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/logger.h \
+CMakeFiles/firewall.dir/src/utils/logger.cpp.o: \
+  /Users/samarthbhatia/Developer/Systems/flowatch/src/utils/logger.cpp \
+  /Users/samarthbhatia/Developer/Systems/flowatch/src/utils/../../include/utils/logger.hpp \
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/spdlog.h \
   /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/common.h \
   /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/null_mutex.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/atomic \
@@ -63,6 +62,7 @@ extern/spdlog/CMakeFiles/spdlog.dir/src/async.cpp.o: \
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_header_macro.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_ptrdiff_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_size_t.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_rsize_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_wchar_t.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_null.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/__stddef_nullptr_t.h \
@@ -80,6 +80,8 @@ extern/spdlog/CMakeFiles/spdlog.dir/src/async.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/AvailabilityInternalLegacy.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_size_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_null.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_rsize_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_errno_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_ssize_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/machine/types.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/arm/types.h \
@@ -923,8 +925,6 @@ extern/spdlog/CMakeFiles/spdlog.dir/src/async.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_nlink_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_useconds_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_suseconds_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_rsize_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_errno_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_fd_def.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_fd_setsize.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/sys/_types/_fd_set.h \
@@ -954,13 +954,6 @@ extern/spdlog/CMakeFiles/spdlog.dir/src/async.cpp.o: \
   /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/fmt/bundled/core.h \
   /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/fmt/bundled/format.h \
   /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/fmt/bundled/base.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/backtracer.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/circular_q.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/cassert \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/assert.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/_static_assert.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/log_msg_buffer.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/log_msg.h \
   /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/registry.h \
   /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/periodic_worker.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/condition_variable \
@@ -1004,11 +997,18 @@ extern/spdlog/CMakeFiles/spdlog.dir/src/async.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/print \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/unistd.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__thread/this_thread.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/thread_pool.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/mpmc_blocking_q.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/os.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/async_logger-inl.h \
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/synchronous_factory.h \
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/logger.h \
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/backtracer.h \
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/circular_q.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/cassert \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/assert.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/include/_static_assert.h \
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/log_msg_buffer.h \
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/log_msg.h \
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/version.h \
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/sinks/stdout_color_sinks.h \
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/sinks/ansicolor_sink.h \
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/console_globals.h \
   /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/sinks/sink.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/formatter.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/periodic_worker-inl.h \
-  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/details/thread_pool-inl.h
+  /Users/samarthbhatia/Developer/Systems/flowatch/extern/spdlog/include/spdlog/formatter.h

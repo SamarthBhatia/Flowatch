@@ -11,6 +11,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/samarthbhatia/Developer/Systems/flowatch/src/cli/interface.cpp" "CMakeFiles/firewall.dir/src/cli/interface.cpp.o" "gcc" "CMakeFiles/firewall.dir/src/cli/interface.cpp.o.d"
   "/Users/samarthbhatia/Developer/Systems/flowatch/src/main.cpp" "CMakeFiles/firewall.dir/src/main.cpp.o" "gcc" "CMakeFiles/firewall.dir/src/main.cpp.o.d"
   "/Users/samarthbhatia/Developer/Systems/flowatch/src/monitor/connection_monitor.cpp" "CMakeFiles/firewall.dir/src/monitor/connection_monitor.cpp.o" "gcc" "CMakeFiles/firewall.dir/src/monitor/connection_monitor.cpp.o.d"
+  "/Users/samarthbhatia/Developer/Systems/flowatch/src/rules/rule_manager.cpp" "CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o" "gcc" "CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o.d"
+  "/Users/samarthbhatia/Developer/Systems/flowatch/src/utils/logger.cpp" "CMakeFiles/firewall.dir/src/utils/logger.cpp.o" "gcc" "CMakeFiles/firewall.dir/src/utils/logger.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

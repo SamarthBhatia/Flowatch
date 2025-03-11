@@ -114,11 +114,41 @@ CMakeFiles/firewall.dir/src/monitor/connection_monitor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/firewall.dir/src/monitor/connection_monitor.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/samarthbhatia/Developer/Systems/flowatch/src/monitor/connection_monitor.cpp -o CMakeFiles/firewall.dir/src/monitor/connection_monitor.cpp.s
 
+CMakeFiles/firewall.dir/src/utils/logger.cpp.o: CMakeFiles/firewall.dir/flags.make
+CMakeFiles/firewall.dir/src/utils/logger.cpp.o: /Users/samarthbhatia/Developer/Systems/flowatch/src/utils/logger.cpp
+CMakeFiles/firewall.dir/src/utils/logger.cpp.o: CMakeFiles/firewall.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/samarthbhatia/Developer/Systems/flowatch/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/firewall.dir/src/utils/logger.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/firewall.dir/src/utils/logger.cpp.o -MF CMakeFiles/firewall.dir/src/utils/logger.cpp.o.d -o CMakeFiles/firewall.dir/src/utils/logger.cpp.o -c /Users/samarthbhatia/Developer/Systems/flowatch/src/utils/logger.cpp
+
+CMakeFiles/firewall.dir/src/utils/logger.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/firewall.dir/src/utils/logger.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/samarthbhatia/Developer/Systems/flowatch/src/utils/logger.cpp > CMakeFiles/firewall.dir/src/utils/logger.cpp.i
+
+CMakeFiles/firewall.dir/src/utils/logger.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/firewall.dir/src/utils/logger.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/samarthbhatia/Developer/Systems/flowatch/src/utils/logger.cpp -o CMakeFiles/firewall.dir/src/utils/logger.cpp.s
+
+CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o: CMakeFiles/firewall.dir/flags.make
+CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o: /Users/samarthbhatia/Developer/Systems/flowatch/src/rules/rule_manager.cpp
+CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o: CMakeFiles/firewall.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/samarthbhatia/Developer/Systems/flowatch/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o -MF CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o.d -o CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o -c /Users/samarthbhatia/Developer/Systems/flowatch/src/rules/rule_manager.cpp
+
+CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/samarthbhatia/Developer/Systems/flowatch/src/rules/rule_manager.cpp > CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.i
+
+CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/samarthbhatia/Developer/Systems/flowatch/src/rules/rule_manager.cpp -o CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.s
+
 # Object files for target firewall
 firewall_OBJECTS = \
 "CMakeFiles/firewall.dir/src/main.cpp.o" \
 "CMakeFiles/firewall.dir/src/cli/interface.cpp.o" \
-"CMakeFiles/firewall.dir/src/monitor/connection_monitor.cpp.o"
+"CMakeFiles/firewall.dir/src/monitor/connection_monitor.cpp.o" \
+"CMakeFiles/firewall.dir/src/utils/logger.cpp.o" \
+"CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o"
 
 # External object files for target firewall
 firewall_EXTERNAL_OBJECTS =
@@ -126,11 +156,13 @@ firewall_EXTERNAL_OBJECTS =
 firewall: CMakeFiles/firewall.dir/src/main.cpp.o
 firewall: CMakeFiles/firewall.dir/src/cli/interface.cpp.o
 firewall: CMakeFiles/firewall.dir/src/monitor/connection_monitor.cpp.o
+firewall: CMakeFiles/firewall.dir/src/utils/logger.cpp.o
+firewall: CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o
 firewall: CMakeFiles/firewall.dir/build.make
-firewall: /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/lib/libpcap.tbd
+firewall: /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/usr/lib/libpcap.tbd
 firewall: extern/spdlog/libspdlog.a
 firewall: CMakeFiles/firewall.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/samarthbhatia/Developer/Systems/flowatch/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable firewall"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/samarthbhatia/Developer/Systems/flowatch/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable firewall"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/firewall.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

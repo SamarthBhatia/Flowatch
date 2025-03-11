@@ -5,6 +5,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/firewall.dir/src/main.cpp.o.d"
   "CMakeFiles/firewall.dir/src/monitor/connection_monitor.cpp.o"
   "CMakeFiles/firewall.dir/src/monitor/connection_monitor.cpp.o.d"
+  "CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o"
+  "CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o.d"
+  "CMakeFiles/firewall.dir/src/utils/logger.cpp.o"
+  "CMakeFiles/firewall.dir/src/utils/logger.cpp.o.d"
   "firewall"
   "firewall.pdb"
 )

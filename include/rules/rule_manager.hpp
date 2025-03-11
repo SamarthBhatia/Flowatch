@@ -10,7 +10,7 @@ namespace Firewall{
         std::string action;
         std::string direction;
         std::string protocol;
-        std::string remote_addres;
+        std::string remote_address;
         int remote_port;
         bool enabled;
     };

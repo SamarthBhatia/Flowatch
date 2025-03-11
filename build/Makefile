@@ -214,6 +214,54 @@ src/monitor/connection_monitor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/firewall.dir/build.make CMakeFiles/firewall.dir/src/monitor/connection_monitor.cpp.s
 .PHONY : src/monitor/connection_monitor.cpp.s
 
+src/rules/rule_manager.o: src/rules/rule_manager.cpp.o
+.PHONY : src/rules/rule_manager.o
+
+# target to build an object file
+src/rules/rule_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/firewall.dir/build.make CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.o
+.PHONY : src/rules/rule_manager.cpp.o
+
+src/rules/rule_manager.i: src/rules/rule_manager.cpp.i
+.PHONY : src/rules/rule_manager.i
+
+# target to preprocess a source file
+src/rules/rule_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/firewall.dir/build.make CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.i
+.PHONY : src/rules/rule_manager.cpp.i
+
+src/rules/rule_manager.s: src/rules/rule_manager.cpp.s
+.PHONY : src/rules/rule_manager.s
+
+# target to generate assembly for a file
+src/rules/rule_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/firewall.dir/build.make CMakeFiles/firewall.dir/src/rules/rule_manager.cpp.s
+.PHONY : src/rules/rule_manager.cpp.s
+
+src/utils/logger.o: src/utils/logger.cpp.o
+.PHONY : src/utils/logger.o
+
+# target to build an object file
+src/utils/logger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/firewall.dir/build.make CMakeFiles/firewall.dir/src/utils/logger.cpp.o
+.PHONY : src/utils/logger.cpp.o
+
+src/utils/logger.i: src/utils/logger.cpp.i
+.PHONY : src/utils/logger.i
+
+# target to preprocess a source file
+src/utils/logger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/firewall.dir/build.make CMakeFiles/firewall.dir/src/utils/logger.cpp.i
+.PHONY : src/utils/logger.cpp.i
+
+src/utils/logger.s: src/utils/logger.cpp.s
+.PHONY : src/utils/logger.s
+
+# target to generate assembly for a file
+src/utils/logger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/firewall.dir/build.make CMakeFiles/firewall.dir/src/utils/logger.cpp.s
+.PHONY : src/utils/logger.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -233,6 +281,12 @@ help:
 	@echo "... src/monitor/connection_monitor.o"
 	@echo "... src/monitor/connection_monitor.i"
 	@echo "... src/monitor/connection_monitor.s"
+	@echo "... src/rules/rule_manager.o"
+	@echo "... src/rules/rule_manager.i"
+	@echo "... src/rules/rule_manager.s"
+	@echo "... src/utils/logger.o"
+	@echo "... src/utils/logger.i"
+	@echo "... src/utils/logger.s"
 .PHONY : help
 
 
