@@ -1,0 +1,13 @@
+{
+    "default_policy": "allow",
+    "rules_file": "~/.config/firewall/rules.json",
+    "log_level": "info",
+    "behavior_profiles": "~/.config/firewall/behavior_profiles.json",
+    "behavior_learning_period": 60,
+    "geoip_file": "/usr/share/firewall/geoip/GeoLite2-Country.csv",
+    "blocked_countries": [],
+    "enable_behavior_monitoring": true,
+    "enable_geoip_filtering": true,
+    "prompt_for_unknown_connections": true,
+    "blocked_count": 0
+}

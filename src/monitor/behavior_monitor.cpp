@@ -143,7 +143,7 @@ bool BehaviorMonitor::isNormalBehavior(const std::string& app, const std::string
     return false;
 }
 
-const AppBehavior* BehaviorMonitor::getAppBehavior(const std::string& app) const {
+const AppBehavior* BehaviorMonitor::getAppBehavior(const std::string& app) {
     std::lock_guard<std::mutex> lock(profilesMutex_);
     
     auto it = appProfiles_.find(app);

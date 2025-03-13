@@ -46,7 +46,7 @@ public:
                          int remotePort, const std::string& country);
     
     // Get app behavior profile
-    const AppBehavior* getAppBehavior(const std::string& app) const;
+    const AppBehavior* getAppBehavior(const std::string& app);
     
     // Save/load behavior profiles
     bool saveProfiles(const std::string& filename);
