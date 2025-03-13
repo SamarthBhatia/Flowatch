@@ -1,5 +1,8 @@
 #include "../../include/cli/interface.hpp"
 #include "../../include/utils/logger.hpp"
+#include "../../include/utils/config.hpp"
+#include "../../include/monitor/process_monitor.hpp"
+#include "../../include/geo/location_manager.hpp"
 #include <iostream>
 #include <string>
 #include <thread>
@@ -25,8 +28,9 @@ namespace Firewall {
             if (command == "start") {
                 startMonitoring();
             }
-            else if (command == "add-rule" && argc_ >= 4) {
-                addRule(argv_[2], argv_[3]);
+            else if (command == "add-rule" && argc_ >= 5) {
+                // add-rule <app> <action> <address> <port>
+                addRule(argv_[2], argv_[3], argv_[4], argc_ >= 6 ? std::stoi(argv_[5]) : 0);
             }
             else if (command == "list-rules") {
                 listRules();
@@ -83,10 +87,28 @@ namespace Firewall {
         }
     }
     
-    void Interface::addRule(const std::string& app, const std::string& action) {
-        Logger::get()->info("Adding rule for {}: {}", app, action);
-        // Add rule implementation here
-    }
+    void Interface::addRule(const std::string& app, const std::string& action, 
+        const std::string& address, int port) {
+Rule rule;
+rule.application = app;
+rule.action = action;
+rule.direction = "outbound"; // Default direction
+rule.protocol = "tcp";       // Default protocol
+rule.remote_address = address;
+rule.remote_port = port;
+rule.enabled = true;
+
+bool success = monitor_->ruleManager_->addRule(rule);
+
+if (success) {
+std::cout << "Rule added successfully.\n";
+// Save rules to file
+std::string rulesFile = Config::getInstance().get<std::string>("rules_file", getDefaultRulesPath());
+monitor_->ruleManager_->saveRules(rulesFile);
+} else {
+std::cout << "Failed to add rule.\n";
+}
+}
     
     void Interface::listRules() {
         std::cout << "Current Firewall Rules:\n"
