@@ -22,9 +22,12 @@ class RuleManager{
 
         bool loadRules(const std::string& filename);
         bool saveRules(const std::string& filename);
-        bool addRule(const RuleManager& rule);
+        bool addRule(const Rule& rule);
         bool removeRule(const std::string& application);
         bool evaluateConnection(const std::string& app,const std::string& address, int port);
+
+        const std::vector<Rule>& getRules() const;
+
     
     private:
         std::vector<Rule> rules_;

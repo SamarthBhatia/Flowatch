@@ -43,14 +43,39 @@ namespace Firewall{
         }
     }
 
+    // template<>
+    // std::string Config::get<std::string>(const std::string& key, const std::string& defaultValue) const{
+    //     try{
+    //         if (config_.contains(key)){
+    //             return config_[key].get<std::string>();
+    //         } 
+    //     }catch (const std::exception& e){
+    //         Logger::get() -> warn("Error getting config value for {}: {}",key, e.what());
+    //     }
+    //     return defaultValue;
+    // }
     template<>
-    std::string Config::get<std::string>(const std::string& key, const std::string& defaultValue) const{
-        try{
-            if (config_.contains(key)){
+    std::string Config::get<std::string>(const std::string& key, const std::string& defaultValue) const {
+        try {
+            if (config_.contains(key)) {
                 return config_[key].get<std::string>();
-            } 
-        }catch (const std::exception& e){
-            Logger::get() -> warn("Error getting config value for {}: {}",key, e.what());
+            }
+        } catch (const std::exception& e) {
+            Logger::get()->warn("Error getting string config value for {}: {}", key, e.what());
+        }
+        return defaultValue;
+    }
+
+    template<>
+    std::vector<std::string> Config::get<std::vector<std::string>>(
+            const std::string& key, 
+            const std::vector<std::string>& defaultValue) const {
+        try {
+            if (config_.contains(key)) {
+                return config_[key].get<std::vector<std::string>>();
+            }
+        } catch (const std::exception& e) {
+            Logger::get()->warn("Error getting vector config value for {}: {}", key, e.what());
         }
         return defaultValue;
     }
@@ -97,6 +122,28 @@ namespace Firewall{
     template<>
     void Config::set<std::vector<std::string>>(const std::string& key,const std::vector<std::string> &value){
         config_[key]=value;
+    }
+
+    std::string Config::getString(const std::string& key, const std::string& defaultValue) const {
+        try {
+            if (config_.contains(key)) {
+                return config_[key].get<std::string>();
+            }
+        } catch (const std::exception& e) {
+            Logger::get()->warn("Error getting string config value for {}: {}", key, e.what());
+        }
+        return defaultValue;
+    }
+
+    std::vector<std::string> Config::getStringVector(const std::string& key, const std::vector<std::string>& defaultValue) const {
+        try {
+            if (config_.contains(key)) {
+                return config_[key].get<std::vector<std::string>>();
+            }
+        } catch (const std::exception& e) {
+            Logger::get()->warn("Error getting vector config value for {}: {}", key, e.what());
+        }
+        return defaultValue;
     }
 
 }

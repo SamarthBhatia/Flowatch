@@ -1,7 +1,7 @@
 #include "../../include/rules/rule_manager.hpp"
 #include "../../include/utils/logger.hpp"
 
-
+#include <filesystem>
 #include <fstream>
 
 namespace Firewall {
@@ -34,6 +34,11 @@ bool RuleManager::loadRules(const std::string& filename) {
 
 bool RuleManager::saveRules(const std::string& filename) {
     try {
+
+        std::filesystem::path filePath(filename);
+        std::filesystem::create_directories(filePath.parent_path());
+        
+
         std::ofstream file(filename);
         if (!file.is_open()) {
             Logger::get()->error("Failed to open rule file for writing: {}", filename);
@@ -72,6 +77,37 @@ bool RuleManager::evaluateConnection(const std::string& app, const std::string& 
     
     // Default: allow connections if no matching rule is found
     return true;
+}
+
+bool RuleManager::addRule(const Rule& rule) {
+    try {
+        // Check if rule already exists (same app, direction, protocol, address, port)
+        for (size_t i = 0; i < rules_.size(); i++) {
+            if (rules_[i].application == rule.application &&
+                rules_[i].direction == rule.direction &&
+                rules_[i].protocol == rule.protocol &&
+                rules_[i].remote_address == rule.remote_address &&
+                rules_[i].remote_port == rule.remote_port) {
+                
+                // Update existing rule
+                rules_[i] = rule;
+                Logger::get()->info("Updated rule for {}", rule.application);
+                return true;
+            }
+        }
+        
+        // Add new rule
+        rules_.push_back(rule);
+        Logger::get()->info("Added new rule for {}", rule.application);
+        return true;
+    } catch (const std::exception& e) {
+        Logger::get()->error("Error adding rule: {}", e.what());
+        return false;
+    }
+}
+
+const std::vector<Rule>& RuleManager::getRules() const {
+    return rules_;
 }
 
 } // namespace Firewall
