@@ -16,6 +16,8 @@ namespace Firewall{
             
             template<typename T>
             void set(const std::string& key, const T& value);
+            std::string getString(const std::string& key, const std::string& defaultValue = "") const;
+            std::vector<std::string> getStringVector(const std::string& key, const std::vector<std::string>& defaultValue = {}) const;
         
         private:
             Config() = default;

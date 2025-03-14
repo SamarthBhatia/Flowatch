@@ -25,6 +25,9 @@ class RuleManager{
         bool addRule(const Rule& rule);
         bool removeRule(const std::string& application);
         bool evaluateConnection(const std::string& app,const std::string& address, int port);
+
+        const std::vector<Rule>& getRules() const;
+
     
     private:
         std::vector<Rule> rules_;
