@@ -60,6 +60,105 @@ namespace Firewall {
     //     return true;
     // }
 
+    // bool ConnectionMonitor::start() {
+    //     std::cout << "Debug: ConnectionMonitor::start() called\n";
+    //     char errbuf[PCAP_ERRBUF_SIZE];
+    //     pcap_if_t *devices;
+        
+    //     // Find all available devices
+    //     if (pcap_findalldevs(&devices, errbuf) == -1) {
+    //         std::cout << "Debug: Failed to find network devices: " << errbuf << std::endl;
+    //         Logger::get()->error("Failed to find network devices: {}", errbuf);
+    //         return false;
+    //     }
+    
+    //     // Use the first device if available
+    //     if (!devices) {
+    //         std::cout << "Debug: No network devices found\n";
+    //         Logger::get()->error("No network devices found");
+    //         return false;
+    //     }
+    
+    //     // Print available devices for debugging
+    //     std::cout << "Debug: Available network devices:\n";
+    //     pcap_if_t *d;
+    //     int i = 0;
+    //     for(d = devices; d; d = d->next) {
+    //         std::cout << "Debug:   " << i++ << ": " << d->name;
+    //         if (d->description)
+    //             std::cout << " (" << d->description << ")";
+    //         std::cout << std::endl;
+    //     }
+    
+    //     // Allow override of interface via config
+    //     std::string interface = devices->name; // Default to first device
+        
+    //     try {
+    //         interface = Config::getInstance().get<std::string>("interface", devices->name);
+    //         std::cout << "Debug: Using interface from config: " << interface << std::endl;
+    //     } catch (const std::exception& e) {
+    //         std::cout << "Debug: Error getting interface from config: " << e.what() << std::endl;
+    //     }
+        
+    //     std::cout << "Debug: Opening device: " << interface << std::endl;
+    //     handle_ = pcap_open_live(interface.c_str(), BUFSIZ, 1, 1000, errbuf);
+    //     pcap_freealldevs(devices);  // Free the device list
+    
+    //     if (handle_ == nullptr) {
+    //         std::cout << "Debug: Failed to open device: " << errbuf << std::endl;
+    //         Logger::get()->error("Failed to open device: {}", errbuf);
+    //         return false;
+    //     }
+    
+    //     // Check datalink type
+    //     int linktype = pcap_datalink(handle_);
+    //     std::cout << "Debug: Device link layer type: " << linktype;
+    //     switch(linktype) {
+    //         case DLT_EN10MB:
+    //             std::cout << " (Ethernet)";
+    //             break;
+    //         case DLT_IEEE802_11:
+    //             std::cout << " (Wireless)";
+    //             break;
+    //         case DLT_NULL:
+    //             std::cout << " (Loopback)";
+    //             break;
+    //         case DLT_LINUX_SLL:
+    //             std::cout << " (Linux cooked)";
+    //             break;
+    //         default:
+    //             std::cout << " (Other)";
+    //     }
+    //     std::cout << std::endl;
+    
+    //     // Set filter to capture only IP packets
+    //     struct bpf_program fp;
+    //     char filter_exp[] = "ip";
+    //     std::cout << "Debug: Compiling filter: " << filter_exp << std::endl;
+    //     if (pcap_compile(handle_, &fp, filter_exp, 0, PCAP_NETMASK_UNKNOWN) == -1) {
+    //         std::cout << "Debug: Failed to compile filter: " << pcap_geterr(handle_) << std::endl;
+    //         Logger::get()->error("Failed to compile filter: {}", pcap_geterr(handle_));
+    //         return false;
+    //     }
+    
+    //     std::cout << "Debug: Setting filter\n";
+    //     if (pcap_setfilter(handle_, &fp) == -1) {
+    //         std::cout << "Debug: Failed to set filter: " << pcap_geterr(handle_) << std::endl;
+    //         Logger::get()->error("Failed to set filter: {}", pcap_geterr(handle_));
+    //         return false;
+    //     }
+    
+    //     running_ = true;
+    //     std::cout << "Debug: Connection monitoring started on interface: " << interface << std::endl;
+    //     Logger::get()->info("Connection monitoring started on interface: {}", interface);
+        
+    //     std::cout << "Debug: Starting packet capture loop\n";
+    //     // Start packet capture - this is a blocking call
+    //     pcap_loop(handle_, -1, packetCallback, reinterpret_cast<u_char*>(this));
+        
+    //     std::cout << "Debug: pcap_loop exited\n";
+    //     return true;
+    // }
     bool ConnectionMonitor::start() {
         std::cout << "Debug: ConnectionMonitor::start() called\n";
         char errbuf[PCAP_ERRBUF_SIZE];
@@ -90,18 +189,19 @@ namespace Firewall {
             std::cout << std::endl;
         }
     
-        // Allow override of interface via config
-        std::string interface = devices->name; // Default to first device
-        
-        try {
-            interface = Config::getInstance().get<std::string>("interface", devices->name);
-            std::cout << "Debug: Using interface from config: " << interface << std::endl;
-        } catch (const std::exception& e) {
-            std::cout << "Debug: Error getting interface from config: " << e.what() << std::endl;
-        }
+        // Hardcode to en0 as a temporary fix - replace this with proper config loading later
+        std::string interface = "en0";
+        std::cout << "Debug: Using hardcoded interface: " << interface << std::endl;
         
         std::cout << "Debug: Opening device: " << interface << std::endl;
         handle_ = pcap_open_live(interface.c_str(), BUFSIZ, 1, 1000, errbuf);
+        
+        if (handle_ == nullptr) {
+            std::cout << "Debug: Failed to open en0, falling back to first available device" << std::endl;
+            interface = devices->name;
+            handle_ = pcap_open_live(interface.c_str(), BUFSIZ, 1, 1000, errbuf);
+        }
+        
         pcap_freealldevs(devices);  // Free the device list
     
         if (handle_ == nullptr) {

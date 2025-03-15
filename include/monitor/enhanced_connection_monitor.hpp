@@ -96,3 +96,5 @@ private:
     std::atomic<bool> statsRunning_;
     std::chrono::steady_clock::time_point lastStatsTime_;
 };
+
+}

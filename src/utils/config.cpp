@@ -10,35 +10,48 @@ namespace Firewall{
         return instance;
     }
 
-    bool Config::load(const std::string& filename){
-        try{
+    bool Config::load(const std::string& filename) {
+        try {
             std::ifstream file(filename);
-            if (!file.is_open()){
-                Logger::get() -> warn("Config file not found: {}", filename);
+            if (!file.is_open()) {
+                Logger::get()->warn("Config file not found: {}", filename);
                 return false;
             }
-
+    
             file >> config_;
-            Logger::get() -> info("Config loaded from: {}",filename);
+            Logger::get()->info("Config loaded from: {}", filename);
             return true;
-        } catch (const std::exception& e){
-            Logger::get() -> error("Error loading config: {}",e.what());
+        } catch (const std::exception& e) {
+            Logger::get()->error("Error loading config: {}", e.what());
             return false;
         }
     }
-
-    bool Config::save(const std::string& filename){
-        try{
+    
+    bool Config::save(const std::string& filename) {
+        try {
+            // Create directory structure if it doesn't exist
+            std::filesystem::path path(filename);
+            std::filesystem::create_directories(path.parent_path());
+            
+            // Open file for writing
             std::ofstream file(filename);
-            if (!file.is_open()){
-                Logger::get() -> error("Failed to open config file for writing: {}", filename);
+            if (!file.is_open()) {
+                Logger::get()->error("Failed to open config file for writing: {}", filename);
                 return false;
             }
-            file << std::setw(4) << config_ <<std::endl;
-            Logger::get() -> info("Config saved to: {}",filename);
+            
+            // Check if config is empty - don't write empty configs!
+            if (config_.empty()) {
+                Logger::get()->error("Attempted to save empty config to: {}", filename);
+                return false;
+            }
+            
+            // Write config to file
+            file << std::setw(4) << config_ << std::endl;
+            Logger::get()->info("Config saved to: {}", filename);
             return true;
-        } catch (const std::exception& e){
-            Logger::get() -> error("Error saving config: {}", e.what());
+        } catch (const std::exception& e) {
+            Logger::get()->error("Error saving config: {}", e.what());
             return false;
         }
     }
