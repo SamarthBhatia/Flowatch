@@ -13,10 +13,50 @@
 namespace Firewall {
     namespace CLI {
     
-    Interface::Interface(int argc, char* argv[]) 
+        Interface::Interface(int argc, char* argv[]) 
         : monitor_(std::make_unique<ConnectionMonitor>()), 
           argc_(argc), 
           argv_(argv) {
+        
+        // Initialize config
+        std::string configPath = getDefaultConfigPath();
+        
+        // Try to load existing config
+        bool configLoaded = Config::getInstance().load(configPath);
+        
+        // If config couldn't be loaded, initialize with defaults
+        if (!configLoaded) {
+            Logger::get()->info("Creating default configuration");
+            
+            // Set default values using proper std::string objects
+            Config::getInstance().set<std::string>("default_policy", std::string("allow"));
+            Config::getInstance().set<std::string>("rules_file", getDefaultRulesPath());
+            Config::getInstance().set<std::string>("log_level", std::string("info"));
+            
+            std::string homePath = getenv("HOME") ? std::string(getenv("HOME")) : std::string("/tmp");
+            std::string profilesPath = homePath + "/.config/firewall/behavior_profiles.json";
+            Config::getInstance().set<std::string>("behavior_profiles", profilesPath);
+            
+            Config::getInstance().set<int>("behavior_learning_period", 60);
+            Config::getInstance().set<bool>("enable_behavior_monitoring", true);
+            Config::getInstance().set<bool>("enable_geoip_filtering", true);
+            Config::getInstance().set<bool>("prompt_for_unknown_connections", true);
+            Config::getInstance().set<int>("blocked_count", 0);
+            
+            // Find default interface - this is critical to fix your issue
+            char errbuf[PCAP_ERRBUF_SIZE];
+            pcap_if_t* devices;
+            if (pcap_findalldevs(&devices, errbuf) != -1 && devices != nullptr) {
+                Config::getInstance().set<std::string>("interface", std::string(devices->name));
+                pcap_freealldevs(devices);
+            } else {
+                // Fallback to a reasonable default if we can't find interfaces
+                Config::getInstance().set<std::string>("interface", std::string("en0")); // Common default on macOS
+            }
+            
+            // Save the config
+            Config::getInstance().save(configPath);
+        }
     }
     
     int Interface::run() {
@@ -76,7 +116,8 @@ namespace Firewall {
             homePath = "/tmp";
         }
         
-        return homePath + "/.config/firewall/config.json";
+        // return homePath + "/.config/firewall/config.json";
+        return "/Users/samarthbhatia/Developer/Systems/flowatch/config/firewall/config.json";
     }
     
     std::string Interface::getDefaultRulesPath() {
@@ -88,7 +129,8 @@ namespace Firewall {
             homePath = "/tmp";
         }
         
-        return homePath + "/.config/firewall/rules.json";
+        // return homePath + "/.config/firewall/rules.json";
+        return "/Users/samarthbhatia/Developer/Systems/flowatch/config/firewall/config.json";
     }
 
     void Interface::printInteractiveHelp() {
