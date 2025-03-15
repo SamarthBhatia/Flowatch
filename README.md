@@ -1,35 +1,35 @@
-# Firewall
+# Flowatch
 
 A robust, intelligent network firewall for Linux systems with application behavior analysis, geographical filtering, and traffic monitoring capabilities.
 
-## Features
+## 🚀 Features
+✅ **Application-Aware Filtering**: Detect and control network traffic by application  
+✅ **Behavior Analysis**: Learn normal application behavior patterns and detect anomalies  
+✅ **GeoIP Filtering**: Block connections to/from specific countries  
+✅ **Traffic Monitoring**: Visualize and analyze your network traffic  
+✅ **Comprehensive Rule System**: Create detailed rules based on multiple parameters  
+✅ **Command Line Interface**: Simple, powerful CLI for control and configuration  
 
-- **Application-Aware Filtering**: Detect and control network traffic by application
-- **Behavior Analysis**: Learn normal application behavior patterns and detect anomalies
-- **GeoIP Filtering**: Block connections to/from specific countries
-- **Traffic Monitoring**: Visualize and analyze your network traffic
-- **Comprehensive Rule System**: Create detailed rules based on multiple parameters
-- **Command Line Interface**: Simple, powerful CLI for control and configuration
+---
 
-## Requirements
+## 🛠️ Requirements
+- **CMake** 3.15+
+- **libpcap-dev**
+- **libspdlog-dev**
+- **libssl-dev**
+- **nlohmann-json-dev**
 
-- CMake 3.15+
-- libpcap-dev
-- libspdlog-dev
-- libssl-dev
-- nlohmann-json-dev
+---
 
-## Installation
-
-### From Source
-
+## 🛠️ Installation
+### 🔹 From Source
 ```bash
 # Install dependencies
 sudo apt install build-essential cmake libpcap-dev libspdlog-dev libssl-dev nlohmann-json3-dev
 
 # Clone repository
-git clone https://github.com/yourusername/firewall.git
-cd firewall
+git clone https://github.com/SamarthBhatia/Flowatch.git
+cd Flowatch
 
 # Build
 mkdir build && cd build
@@ -40,23 +40,41 @@ make -j$(nproc)
 sudo make install
 ```
 
-### Configuration
+---
 
-The firewall uses a JSON configuration file located at `~/.config/firewall/config.json`. A default configuration is installed during setup, but you can modify it to suit your needs:
+### ⚙️ Configuration
+
+Before starting the flowatch, **initialize the configuration file** by running:
+
+```bash
+cd flowatch (if not in root directory)
+chmod +x generate_json.sh
+./generate_json.sh
+```
+
+This script will creeate a **default** `config.json` inside: 
+```bash
+flowatch/config/firewall/config.json
+```
+
+You can modify `config.json` as needed:
 
 ```json
 {
-  "default_policy": "allow",
-  "rules_file": "~/.config/firewall/rules.json",
-  "log_level": "info",
-  "behavior_profiles": "~/.config/firewall/behavior_profiles.json",
-  "behavior_learning_period": 60,
-  "enable_behavior_monitoring": true,
-  "enable_geoip_filtering": true
+    "default_policy": "allow",
+    "rules_file": "config/firewall/rules.json",
+    "log_level": "info",
+    "behavior_profiles": "config/firewall/behavior_profiles.json",
+    "behavior_learning_period": 60,
+    "enable_behavior_monitoring": true,
+    "enable_geoip_filtering": true,
+    "prompt_for_unknown_connections": true,
+    "blocked_count": 0,
+    "interface": "en0"
 }
 ```
 
-## Usage
+## 🚀 Usage
 
 ### Basic Commands
 
@@ -65,22 +83,22 @@ The firewall uses a JSON configuration file located at `~/.config/firewall/confi
 sudo firewall start
 
 # Add a rule to allow an application
-sudo firewall add-rule firefox allow * 0
+add-rule firefox allow * 0
 
 # Block a specific IP address for all applications
-sudo firewall add-rule * block 192.168.1.100 0
+add-rule * block 192.168.1.100 0
 
 # Block connections to a specific country
-sudo firewall block-country CN
+block-country CN
 
 # List all current rules
-sudo firewall list-rules
+list-rules
 
 # Check firewall status
-sudo firewall status
+status
 ```
 
-### Interactive Mode
+### 📌 Interactive Mode
 
 When running `firewall start`, the program enters interactive mode with a command prompt where you can enter commands directly:
 
@@ -91,18 +109,18 @@ firewall> status
 firewall> exit
 ```
 
-### Rule Syntax
+### 📜 Rule Syntax
 
 Rule Format: `<application> <action> <address> <port>`
 
-- **application**: Application name or path, use "*" for all applications
-- **action**: Either "allow" or "block"
-- **address**: IP address, domain name, or "*" for all addresses
-- **port**: Port number, or 0 for all ports
+- `application`: Application name or path, use "*" for all applications
+- `action`: Either "allow" or "block"
+- `address`: IP address, domain name, or "*" for all addresses
+- `port`: Port number, or 0 for all ports
 
-## How It Works
+## ⚙️ How It Works
 
-Firewall uses `libpcap` to monitor network traffic and identifies processes making connections using the `/proc` filesystem. It builds behavior profiles for applications by learning their normal connection patterns and can alert or block abnormal behavior.
+Flowatch uses `libpcap` to monitor network traffic and identifies processes making connections using the `/proc` filesystem. It builds behavior profiles for applications by learning their normal connection patterns and can alert or block abnormal behavior.
 
 The GeoIP functionality allows filtering traffic by country of origin, and the rule system provides flexible control over which applications can access the network.
 
