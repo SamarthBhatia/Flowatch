@@ -5,17 +5,23 @@ set -e
 
 echo "=== Integration Test for Firewall with Dialog Analysis ==="
 
-# Check if binary exists
-if [ ! -f "bin/firewall" ]; then
+BINARY="./build/firewall"
+
+if [ ! -f "$BINARY" ]; then
     echo "❌ Binary not found. Run build.sh first."
     exit 1
 fi
 
-echo "✅ Binary found"
+echo "✅ Running $BINARY -- verifying CLI responsiveness..."
+"$BINARY" help > /dev/null || {
+    echo "❌ Binary did not respond to help command"
+    exit 1
+}
+
 
 # Test basic help command
 echo "Testing basic help..."
-if ./bin/firewall help > /dev/null 2>&1; then
+if ./build/firewall help > /dev/null 2>&1; then
     echo "✅ Basic help works"
 else
     echo "❌ Basic help failed"
@@ -24,7 +30,7 @@ fi
 
 # Test enhanced help (dialog commands)
 echo "Testing dialog analysis help..."
-if ./bin/firewall minimize-dialog 2>&1 | grep -q "minimize"; then
+if ./build/firewall minimize-dialog 2>&1 | grep -q "minimize"; then
     echo "✅ Dialog analysis commands available"
 else
     echo "❌ Dialog analysis commands not working"
@@ -74,7 +80,7 @@ echo "✅ Test data created"
 
 # Test dialog diffing (should handle missing files gracefully)
 echo "Testing dialog diffing..."
-if ./bin/firewall diff-dialogs test_data/test_dialog.json test_data/test_dialog.json > test_output/diff_result.txt 2>&1; then
+if ./build/firewall diff-dialogs test_data/test_dialog.json test_data/test_dialog.json > test_output/diff_result.txt 2>&1; then
     echo "✅ Dialog diffing works"
 else
     echo "⚠️  Dialog diffing had issues (expected for test data)"
@@ -82,7 +88,7 @@ fi
 
 # Test dialog minimization (should handle test data gracefully)
 echo "Testing dialog minimization..."
-if ./bin/firewall minimize-dialog test_data/test_dialog.json test_output/minimized.json > test_output/minimize_result.txt 2>&1; then
+if ./build/firewall minimize-dialog test_data/test_dialog.json test_output/minimized.json > test_output/minimize_result.txt 2>&1; then
     echo "✅ Dialog minimization works"
 else
     echo "⚠️  Dialog minimization had issues (expected for test data)"
@@ -91,7 +97,7 @@ fi
 # Test clustering with empty directory
 mkdir -p test_data/empty_dialogs
 echo "Testing dialog clustering..."
-if ./bin/firewall cluster-dialogs test_data/empty_dialogs > test_output/cluster_result.txt 2>&1; then
+if ./build/firewall cluster-dialogs test_data/empty_dialogs > test_output/cluster_result.txt 2>&1; then
     echo "✅ Dialog clustering works"
 else
     echo "⚠️  Dialog clustering had issues (expected for empty directory)"
@@ -99,7 +105,7 @@ fi
 
 # Test cookie testing (should fail gracefully for invalid domain)
 echo "Testing cookie replay testing..."
-if timeout 10s ./bin/firewall test-cookies invalid.domain.test > test_output/cookie_result.txt 2>&1; then
+if timeout 10s ./build/firewall test-cookies invalid.domain.test > test_output/cookie_result.txt 2>&1; then
     echo "✅ Cookie testing works (or failed gracefully)"
 else
     echo "⚠️  Cookie testing timed out or failed (expected for invalid domain)"
@@ -115,7 +121,7 @@ fi
 
 # Test basic rule management
 echo "Testing rule management..."
-if ./bin/firewall add-rule test_app block test.com 80 > test_output/rule_result.txt 2>&1; then
+if ./build/firewall add-rule test_app block test.com 80 > test_output/rule_result.txt 2>&1; then
     echo "✅ Rule management works"
 else
     echo "❌ Rule management failed"
@@ -135,11 +141,11 @@ echo "🎉 Integration test completed!"
 echo ""
 echo "Next steps:"
 echo "1. Copy your captured dialog files to test_data/"
-echo "2. Run: ./bin/firewall start  (may need sudo for packet capture)"
+echo "2. Run: ./build/firewall start  (may need sudo for packet capture)"
 echo "3. Try dialog analysis commands with real data"
 echo ""
 echo "For monitoring, run with elevated privileges:"
-echo "sudo ./bin/firewall start"
+echo "sudo ./build/firewall start"
 
 # Cleanup
 echo "Cleaning up test files..."
