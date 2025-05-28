@@ -108,12 +108,18 @@ endif()
 
 # Create a simple spdlog target without subdirectory complications
 add_library(simple_spdlog INTERFACE)
-target_include_directories(simple_spdlog INTERFACE extern/spdlog/include)
+    target_include_directories(simple_spdlog
+    INTERFACE
+     ${CMAKE_SOURCE_DIR}/extern/spdlog/include
+)
 target_link_libraries(simple_spdlog INTERFACE Threads::Threads)
 
 # Create a simple nlohmann_json target
 add_library(simple_json INTERFACE)
-target_include_directories(simple_json INTERFACE extern/json/include)
+target_include_directories(simple_json
+  INTERFACE
+    ${CMAKE_SOURCE_DIR}/extern/json/include
+)
 
 # Find libpcap
 find_path(PCAP_INCLUDE_DIR pcap.h PATHS /opt/homebrew/include /usr/local/include)
@@ -168,9 +174,12 @@ add_executable(firewall ${SOURCES})
 # Include directories
 target_include_directories(firewall
     PRIVATE
-    ${PROJECT_SOURCE_DIR}/include
-    ${PCAP_INCLUDE_DIR}
+        ${PROJECT_SOURCE_DIR}/include
+        ${PCAP_INCLUDE_DIR}
+    INTERFACE
+        ${CMAKE_SOURCE_DIR}/extern/json/include
 )
+
 
 # Link libraries - simplified
 target_link_libraries(firewall

@@ -553,6 +553,9 @@ namespace Firewall {
             else if (command == "list-rules") {
                 listRules();
             }
+            else if (command == "block-country" && argc_ >= 3) {
+                blockCountry(argv_[2]);
+            }
             else if (command == "status") {
                 showStatus();
             }
@@ -766,8 +769,8 @@ namespace Firewall {
                 printStatus();
             } else if (input.substr(0, 9) == "add-rule ") {
                 parseInteractiveAddRule(input.substr(9));
-            } else if (input.substr(0, 13) == "block-country ") {
-                blockCountry(input.substr(13));
+            } else if (input.rfind("block-country ", 0) == 0) {
+                blockCountry(input.substr(14));  
             } else if (input == "list-rules") {
                 printRules();
             } else if (input.substr(0, 7) == "config ") {

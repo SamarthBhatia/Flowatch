@@ -43,7 +43,7 @@ timeout 120s make VERBOSE=1 -j1 || {
     
     # Test main.cpp first
     echo "Testing main.cpp..."
-    if timeout 30s g++ -std=c++17 -I./include -I./extern/spdlog/include -I./extern/json/include -c src/main.cpp -o test_main.o; then
+    if timeout 30s g++ -std=c++17 -I./include -I./extern/json/include -I./extern/spdlog/include -c ./src/main.cpp -o main.o; then
         echo "✅ main.cpp compiles fine"
         rm -f test_main.o
     else
@@ -52,7 +52,7 @@ timeout 120s make VERBOSE=1 -j1 || {
     
     # Test interface.cpp (the problematic one)
     echo "Testing cli/interface.cpp..."
-    if timeout 30s g++ -std=c++17 -I./include -I./extern/spdlog/include -I./extern/json/include -c src/cli/interface.cpp -o test_interface.o; then
+    if timeout 30s g++ -std=c++17 -I./include -I./extern/spdlog/include -I./extern/json/include -c ./src/cli/interface.cpp -o test_interface.o; then
         echo "✅ interface.cpp compiles fine"
         rm -f test_interface.o
     else
@@ -61,13 +61,13 @@ timeout 120s make VERBOSE=1 -j1 || {
         
         # Try to get more detailed error info
         echo "Getting detailed compilation errors..."
-        g++ -std=c++17 -I./include -I./extern/spdlog/include -I./extern/json/include -c src/cli/interface.cpp -o test_interface.o -v 2>&1 | head -50
+        g++ -std=c++17 -I./include -I./extern/spdlog/include -I./extern/json/include -c ./src/cli/interface.cpp -o test_interface.o -v 2>&1 | head -50
     fi
     
     # Test a dialog file
     if [ -f "src/dialog/dialog_applications.cpp" ]; then
         echo "Testing dialog_applications.cpp..."
-        if timeout 60s g++ -std=c++17 -I./include -I./extern/spdlog/include -I./extern/json/include -c src/dialog/dialog_applications.cpp -o test_dialog.o; then
+        if timeout 60s g++ -std=c++17 -I./include -I./extern/spdlog/include -I./extern/json/include -c ./src/dialog/dialog_applications.cpp -o test_dialog.o; then
             echo "✅ dialog_applications.cpp compiles fine"
             rm -f test_dialog.o
         else
