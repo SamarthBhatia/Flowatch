@@ -4,6 +4,10 @@ project(flowatch VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+if(APPLE)
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lc++fs")
+endif()
+
 # Set options for dependencies
 set(SPDLOG_BUILD_EXAMPLES OFF CACHE BOOL "")
 set(SPDLOG_BUILD_TESTS OFF CACHE BOOL "")

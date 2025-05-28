@@ -14,7 +14,7 @@ namespace Firewall{
                 int run();
 
             private:
-                void showHelp();
+                
                 void startMonitoring();
                 // void addRule(const std::string& app, const std::string& action);
                 void addRule(const std::string& app, const std::string& action, 
@@ -35,6 +35,11 @@ namespace Firewall{
                 std::unique_ptr<ConnectionMonitor> monitor_;
                 int argc_;
                 char** argv_;
+
+            protected:
+                int argc_;
+                char** argv_;
+                void showHelp();
         };
     }
 }

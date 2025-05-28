@@ -60,6 +60,8 @@
         "iomanip": "cpp",
         "map": "cpp",
         "span": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "regex": "cpp",
+        "source_location": "cpp"
     }
 }
