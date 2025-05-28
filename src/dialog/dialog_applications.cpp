@@ -1,4 +1,6 @@
 #include "../../include/dialog/dialog_applications.hpp"
+#include "../../include/dialog/dialog_minimizer.hpp"
+#include "../../include/dialog/dialog_integration.hpp"
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -7,11 +9,60 @@
 #include <filesystem>
 #include <fstream>
 #include <regex>
+#include <filesystem>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <dirent.h>
+
+bool createDirectory(const std::string& path) {
+    struct stat st;
+    if (stat(path.c_str(), &st) != 0) {
+        return mkdir(path.c_str(), 0755) == 0;
+    }
+    return S_ISDIR(st.st_mode);
+}
+
+bool fileExists(const std::string& filename) {
+    struct stat st;
+    return stat(filename.c_str(), &st) == 0;
+}
+
+std::vector<std::string> listDialogFiles(const std::string& dir_path) {
+    std::vector<std::string> files;
+    DIR* dir = opendir(dir_path.c_str());
+    if (!dir) return files;
+
+    struct dirent* entry;
+    while ((entry = readdir(dir)) != nullptr) {
+        std::string name = entry->d_name;
+        if (name.length() >= 7 && 
+           (name.compare(name.length() - 7, 7, ".dialog") == 0 ||
+            name.compare(name.length() - 5, 5, ".json") == 0)) {
+            files.push_back(dir_path + "/" + name);
+        }
+    }
+    closedir(dir);
+    return files;
+}
 
 namespace Firewall {
 namespace Dialog {
 
 // DriveByDownloadMilker Implementation
+
+void DriveByDownloadMilker::start() {
+    running_ = true;
+    collection_thread_ = std::thread(&DriveByDownloadMilker::collectionLoop, this);
+    Logger::get()->info("Drive-by download milker started with {} target IPs", target_ips_.size());
+}
+
+void DriveByDownloadMilker::stop() {
+    running_ = false;
+    if (collection_thread_.joinable()) {
+        collection_thread_.join();
+    }
+    Logger::get()->info("Drive-by download milker stopped");
+}
 
 void DriveByDownloadMilker::collectionLoop() {
     DialogReplayer replayer;
@@ -56,6 +107,11 @@ void DriveByDownloadMilker::collectionLoop() {
     Logger::get()->info("Collection loop stopped");
 }
 
+bool DriveByDownloadMilker::isMalwareBinary(const std::vector<uint8_t>& data) {
+    SecurityGoalFunction goal(SecurityGoalFunction::SecurityGoalType::MALWARE_DOWNLOAD);
+    return goal.evaluate(data);
+}
+
 void DriveByDownloadMilker::storeMalwareSample(const std::string& source_ip, const std::vector<uint8_t>& data) {
     MalwareSample sample;
     sample.source_ip = source_ip;
@@ -91,7 +147,7 @@ std::string DriveByDownloadMilker::computeHash(const std::vector<uint8_t>& data)
 void DriveByDownloadMilker::saveSampleToDisk(const MalwareSample& sample) {
     // Create samples directory if it doesn't exist
     std::string samples_dir = "malware_samples";
-    std::filesystem::create_directories(samples_dir);
+    createDirectory(samples_dir);
     
     // Generate filename with timestamp
     auto time_t = std::chrono::system_clock::to_time_t(sample.collection_time);
@@ -354,7 +410,7 @@ std::vector<std::string> CookieReplayTester::loadAlexaDomains() {
     
     // Try to load from file if it exists
     std::string domains_file = "alexa_top_domains.txt";
-    if (std::filesystem::exists(domains_file)) {
+    if (fileExists(domains_file)) {
         std::ifstream file(domains_file);
         std::string domain;
         domains.clear();
@@ -374,6 +430,44 @@ std::vector<std::string> CookieReplayTester::loadAlexaDomains() {
 }
 
 // DialogAnalysisCLI Implementation
+
+int DialogAnalysisCLI::run() {
+    if (argc_ < 2) {
+        showEnhancedHelp();
+        return 1;
+    }
+    
+    std::string command = argv_[1];
+    
+    if (command == "minimize-dialog" && argc_ >= 4) {
+        return minimizeDialogCommand(argv_[2], argv_[3]);
+    }
+    else if (command == "diff-dialogs" && argc_ >= 4) {
+        return diffDialogsCommand(argv_[2], argv_[3]);
+    }
+    else if (command == "test-cookies" && argc_ >= 3) {
+        return testCookiesCommand(argv_[2]);
+    }
+    else if (command == "start-milker" && argc_ >= 4) {
+        return startMilkerCommand(argv_[2], argv_[3]);
+    }
+    else if (command == "cluster-dialogs" && argc_ >= 3) {
+        return clusterDialogsCommand(argv_[2]);
+    }
+    else {
+        return CLI::Interface::run(); // Fall back to parent implementation
+    }
+}
+
+void DialogAnalysisCLI::showEnhancedHelp() {
+    CLI::Interface::showHelp();
+    std::cout << "\nDialog Analysis Commands:\n"
+              << "  firewall minimize-dialog <input_file> <output_file>  - Minimize network dialog\n"
+              << "  firewall diff-dialogs <file1> <file2>                - Compare two dialogs\n"
+              << "  firewall test-cookies <domain>                       - Test cookie replay vulnerability\n"
+              << "  firewall start-milker <dialog_file> <targets_file>   - Start drive-by download milker\n"
+              << "  firewall cluster-dialogs <dialogs_dir>               - Cluster similar dialogs\n";
+}
 
 int DialogAnalysisCLI::minimizeDialogCommand(const std::string& input_file, const std::string& output_file) {
     try {
@@ -599,7 +693,7 @@ std::shared_ptr<NetworkDialogTree> DialogAnalysisCLI::loadDialogFromFile(const s
     
     Logger::get()->debug("Loading dialog from {}", filename);
     
-    if (!std::filesystem::exists(filename)) {
+    if (!fileExists(filename)) {
         Logger::get()->error("Dialog file not found: {}", filename);
         return nullptr;
     }
@@ -661,7 +755,7 @@ void DialogAnalysisCLI::saveDialogToFile(std::shared_ptr<NetworkDialogTree> dial
 std::vector<std::string> DialogAnalysisCLI::loadTargetIPs(const std::string& filename) {
     std::vector<std::string> ips;
     
-    if (!std::filesystem::exists(filename)) {
+    if (!fileExists(filename)) {
         Logger::get()->error("Target IPs file not found: {}", filename);
         return ips;
     }
@@ -692,7 +786,7 @@ std::vector<std::string> DialogAnalysisCLI::loadTargetIPs(const std::string& fil
 int DialogAnalysisCLI::clusterDialogsCommand(const std::string& dialogs_dir) {
     Logger::get()->info("Clustering dialogs from directory: {}", dialogs_dir);
     
-    if (!std::filesystem::exists(dialogs_dir)) {
+    if (!fileExists(dialogs_dir)) {
         std::cout << "Error: Directory not found: " << dialogs_dir << std::endl;
         return 1;
     }
@@ -748,28 +842,33 @@ int DialogAnalysisCLI::clusterDialogsCommand(const std::string& dialogs_dir) {
 
 std::vector<std::shared_ptr<NetworkDialogTree>> DialogAnalysisCLI::loadDialogsFromDirectory(const std::string& dir) {
     std::vector<std::shared_ptr<NetworkDialogTree>> dialogs;
-    
+
     try {
-        for (const auto& entry : std::filesystem::directory_iterator(dir)) {
-            if (entry.is_regular_file()) {
-                std::string filename = entry.path().filename().string();
+        auto files = listDialogFiles(dir);  // Returns vector<string> of full paths
+
+        for (const auto& filepath : files) {
+            // Extract filename for extension check
+            size_t last_slash = filepath.find_last_of("/\\");
+            std::string filename = (last_slash != std::string::npos) ? filepath.substr(last_slash + 1) : filepath;
+
+            if ((filename.length() >= 7 && filename.compare(filename.length() - 7, 7, ".dialog") == 0) ||
+                (filename.length() >= 5 && filename.compare(filename.length() - 5, 5, ".json") == 0)) {
                 
-                // Check for dialog files (you could use any extension)
-                if (filename.ends_with(".dialog") || filename.ends_with(".json")) {
-                    auto dialog = loadDialogFromFile(entry.path().string());
-                    if (dialog) {
-                        dialogs.push_back(dialog);
-                    }
+                auto dialog = loadDialogFromFile(filepath);
+                if (dialog) {
+                    dialogs.push_back(dialog);
                 }
             }
         }
+
     } catch (const std::exception& e) {
         Logger::get()->error("Error reading directory {}: {}", dir, e.what());
     }
-    
+
     Logger::get()->info("Loaded {} dialogs from directory {}", dialogs.size(), dir);
     return dialogs;
 }
+
 
 } // namespace Dialog
 } // namespace Firewall

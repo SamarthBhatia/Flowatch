@@ -1,5 +1,8 @@
 #pragma once
 
+#include "connection_monitor.hpp"
+#include "../dialog/dialog_tree.hpp"
+#include "../rules/rule_manager.hpp"
 #include <string>
 #include <vector>
 #include <memory>
@@ -9,8 +12,6 @@
 #include <chrono>
 #include <atomic>
 #include <pcap.h>
-
-#include "../rules/rule_manager.hpp"
 
 namespace Firewall {
 
@@ -34,14 +35,16 @@ struct TrafficStats {
     std::time_t timestamp = std::time(nullptr);
 };
 
-class ConnectionMonitor {
+// Enhanced connection monitor with dialog analysis capabilities
+class EnhancedConnectionMonitor {
 public:
-    ConnectionMonitor();
-    ~ConnectionMonitor();
-
+    EnhancedConnectionMonitor();
+    ~EnhancedConnectionMonitor();
+    
+    // Core monitoring functionality
     bool start();
     void stop();
-    bool isRunning() const;
+    bool isRunning() const { return running_; }
     
     // Access connection data
     const std::deque<ConnectionInfo>& getActiveConnections() const;
@@ -51,14 +54,14 @@ public:
     const TrafficStats& getCurrentStats() const;
     const std::deque<TrafficStats>& getTrafficHistory() const;
 
-private:
-    static void packetCallback(u_char* user, const struct pcap_pkthdr* pkthdr, const u_char* packet);
+protected:
+    // Enhanced packet processing
     void processPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet);
     
-    // Packet processing by protocol
-    void processTCPPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet, 
+    // TCP/UDP packet processing
+    void processTCPPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet,
                          const struct ip* ip, const char* srcIP, const char* dstIP);
-    void processUDPPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet, 
+    void processUDPPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet,
                          const struct ip* ip, const char* srcIP, const char* dstIP);
     
     // Utility functions
@@ -74,27 +77,28 @@ private:
     void stopStatsCollection();
     void collectStats();
 
-public:
-    // Make rule manager public so CLI can access it
-    std::unique_ptr<RuleManager> ruleManager_;
-
 private:
+    // Packet capture functionality
     pcap_t* handle_;
-    bool running_;
+    std::atomic<bool> running_;
+    std::unique_ptr<RuleManager> ruleManager_;
     
     // Connection tracking
     std::deque<ConnectionInfo> activeConnections_;
     std::deque<ConnectionInfo> blockedConnections_;
-    std::mutex connectionsMutex_;
+    mutable std::mutex connectionsMutex_;
     
     // Traffic statistics
     TrafficStats currentStats_;
     TrafficStats lastStats_;
     std::deque<TrafficStats> trafficHistory_;
-    std::mutex statsMutex_;
+    mutable std::mutex statsMutex_;
     std::thread statsThread_;
     std::atomic<bool> statsRunning_;
     std::chrono::steady_clock::time_point lastStatsTime_;
+    
+    // Packet capture callback
+    static void packetCallback(u_char* user, const struct pcap_pkthdr* pkthdr, const u_char* packet);
 };
 
-}
+} // namespace Firewall

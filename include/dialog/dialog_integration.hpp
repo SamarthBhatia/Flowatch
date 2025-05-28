@@ -20,6 +20,17 @@ namespace Dialog {
 // Forward declarations to avoid circular dependencies
 class DialogBehaviorMonitor;
 
+// Connection info structure for tracking
+struct ConnectionInfo {
+    std::string application;
+    std::string remoteIP;
+    int remotePort;
+    std::string protocol;
+    std::time_t timestamp;
+    std::string country;
+    std::string reason;  // For blocked connections
+};
+
 // Enhanced connection monitor with dialog analysis capabilities
 class DialogAnalysisMonitor : public ConnectionMonitor {
 public:
@@ -52,6 +63,9 @@ public:
     void updateBehaviorProfile(const std::string& app, std::shared_ptr<NetworkDialogTree> dialog);
 
 protected:
+    // Override the base class processPacket method
+    void processPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet);
+    
     // Enhanced packet processing for dialog analysis
     void processEnhancedPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet);
     void processHTTPPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet,
@@ -77,6 +91,11 @@ private:
     bool enable_diffing_ = false;
     bool enable_attack_detection_ = false;
     
+    // Connection tracking
+    std::deque<ConnectionInfo> activeConnections_;
+    std::deque<ConnectionInfo> blockedConnections_;
+    std::mutex connectionsMutex_;
+    
     // Dialog management
     void startNewDialog(const std::string& src_ip, const std::string& dst_ip);
     void finalizeDialog();
@@ -101,6 +120,13 @@ private:
     // HTTP parsing helpers
     bool isHTTPMessage(const std::string& data);
     void parseHTTPFields(std::shared_ptr<MessageNode> message, const std::string& data);
+    
+    // Utility methods that were missing
+    std::string getLocalIPAddress();
+    void addToRecentBlocks(const std::string& app, const std::string& remoteIP, 
+                          int remotePort, const std::string& reason);
+    void logBlockedConnection(const std::string& app, const std::string& remoteIP, 
+                             int remotePort, const std::string& reason);
 };
 
 // Specialized goal functions for security analysis

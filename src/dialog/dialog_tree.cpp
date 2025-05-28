@@ -8,6 +8,7 @@ namespace Firewall {
 namespace Dialog {
 
 // NetworkDialogTree Implementation
+
 std::shared_ptr<ConnectionNode> NetworkDialogTree::addConnection(
     const std::string& src_ip, uint16_t src_port,
     const std::string& dst_ip, uint16_t dst_port,

@@ -6,11 +6,35 @@
 #include <unistd.h>
 #include <algorithm>
 #include <random>
+#include <limits>
 
 namespace Firewall {
 namespace Dialog {
 
 // NetworkDeltaDebugger Implementation
+
+std::shared_ptr<NetworkDialogTree> NetworkDeltaDebugger::minimize(
+    std::shared_ptr<NetworkDialogTree> original_tree) {
+    
+    Logger::get()->info("Starting network dialog minimization");
+    
+    auto current_tree = original_tree;
+    
+    // Level 1: Minimize connections
+    Logger::get()->info("Level 1: Minimizing connections");
+    current_tree = minimizeConnections(current_tree);
+    
+    // Level 2: Minimize messages
+    Logger::get()->info("Level 2: Minimizing messages");
+    current_tree = minimizeMessages(current_tree);
+    
+    // Level 3: Minimize fields
+    Logger::get()->info("Level 3: Minimizing fields");
+    current_tree = minimizeFields(current_tree);
+    
+    Logger::get()->info("Dialog minimization completed");
+    return current_tree;
+}
 
 std::shared_ptr<NetworkDialogTree> NetworkDeltaDebugger::minimizeConnections(
     std::shared_ptr<NetworkDialogTree> tree) {
@@ -29,6 +53,7 @@ std::shared_ptr<NetworkDialogTree> NetworkDeltaDebugger::minimizeConnections(
         connection_nodes.push_back(std::static_pointer_cast<DialogNode>(conn));
     }
     
+    // Create test function that captures this instance
     auto test_func = [this, tree](const std::vector<std::shared_ptr<DialogNode>>& nodes) -> bool {
         auto test_tree = createTestTree(tree, nodes);
         if (!test_tree) return false;
@@ -66,6 +91,7 @@ std::shared_ptr<NetworkDialogTree> NetworkDeltaDebugger::minimizeMessages(
     
     Logger::get()->debug("Minimizing {} messages", all_messages.size());
     
+    // Create test function that captures this instance  
     auto test_func = [this, tree](const std::vector<std::shared_ptr<DialogNode>>& nodes) -> bool {
         auto test_tree = createTestTreeWithMessages(tree, nodes);
         if (!test_tree) return false;
@@ -118,6 +144,7 @@ std::shared_ptr<MessageNode> NetworkDeltaDebugger::minimizeMessageFields(
     
     Logger::get()->debug("Minimizing {} fields in message", fields.size());
     
+    // Create test function that captures this instance and message
     auto test_func = [this, message](const std::vector<std::shared_ptr<DialogNode>>& nodes) -> bool {
         auto test_message = createTestMessage(message, nodes);
         if (!test_message) return false;
@@ -264,7 +291,6 @@ std::shared_ptr<MessageNode> NetworkDeltaDebugger::createTestMessage(
             });
         
         // Reconstruct message data from fields
-        size_t current_offset = 0;
         for (auto& field_node : sorted_fields) {
             auto field = std::static_pointer_cast<FieldNode>(field_node);
             
@@ -283,6 +309,88 @@ std::shared_ptr<MessageNode> NetworkDeltaDebugger::createTestMessage(
     }
     
     return test_message;
+}
+
+std::vector<std::shared_ptr<DialogNode>> NetworkDeltaDebugger::deltaDebug(
+    const std::vector<std::shared_ptr<DialogNode>>& nodes,
+    std::function<bool(const std::vector<std::shared_ptr<DialogNode>>&)> test_func) {
+    
+    if (nodes.empty()) return nodes;
+    
+    std::vector<std::shared_ptr<DialogNode>> current_config = nodes;
+    size_t n = 2; // Initial partition count
+    
+    while (true) {
+        Logger::get()->debug("Delta debugging with {} partitions", n);
+        
+        // Step 1: Reduce to subset
+        for (size_t i = 0; i < n && i < current_config.size(); i++) {
+            size_t partition_size = current_config.size() / n;
+            size_t start = i * partition_size;
+            size_t end = (i == n - 1) ? current_config.size() : (i + 1) * partition_size;
+            
+            std::vector<std::shared_ptr<DialogNode>> subset(
+                current_config.begin() + start, current_config.begin() + end);
+            
+            if (!reset_button_->reset()) {
+                Logger::get()->error("Failed to reset for test");
+                break;
+            }
+            
+            if (test_func(subset)) {
+                Logger::get()->debug("Subset {} passed, reducing configuration", i);
+                current_config = subset;
+                n = 2; // Reset granularity
+                goto continue_outer;
+            }
+        }
+        
+        // Step 2: Reduce to complement
+        for (size_t i = 0; i < n && i < current_config.size(); i++) {
+            size_t partition_size = current_config.size() / n;
+            size_t start = i * partition_size;
+            size_t end = (i == n - 1) ? current_config.size() : (i + 1) * partition_size;
+            
+            std::vector<std::shared_ptr<DialogNode>> complement;
+            complement.insert(complement.end(), current_config.begin(), current_config.begin() + start);
+            complement.insert(complement.end(), current_config.begin() + end, current_config.end());
+            
+            if (!reset_button_->reset()) {
+                Logger::get()->error("Failed to reset for test");
+                break;
+            }
+            
+            if (test_func(complement)) {
+                Logger::get()->debug("Complement {} passed, reducing configuration", i);
+                current_config = complement;
+                n = 2; // Reset granularity
+                goto continue_outer;
+            }
+        }
+        
+        // Step 3: Increase granularity
+        if (n >= current_config.size()) {
+            Logger::get()->debug("Cannot increase granularity further, done");
+            break;
+        }
+        
+        n = std::min(n * 2, current_config.size());
+        
+        continue_outer:;
+    }
+    
+    Logger::get()->debug("Delta debugging completed with {} elements", current_config.size());
+    return current_config;
+}
+
+void NetworkDeltaDebugger::logMinimizationStep(
+    const std::string& level, size_t original_count, size_t minimized_count) {
+    
+    double reduction = original_count > 0 ? 
+        (1.0 - static_cast<double>(minimized_count) / original_count) * 100.0 : 0.0;
+    
+    Logger::get()->info("Level {}: {} -> {} ({}% reduction)", 
+                      level, original_count, minimized_count, reduction);
 }
 
 // DialogReplayer Implementation
