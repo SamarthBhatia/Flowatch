@@ -1,0 +1,122 @@
+{
+    "default_policy": "allow",
+    "rules_file": "~/.config/firewall/rules.json",
+    "log_level": "info",
+    "behavior_profiles": "~/.config/firewall/behavior_profiles.json",
+    "behavior_learning_period": 60,
+    "geoip_file": "/usr/share/firewall/geoip/GeoLite2-Country.csv",
+    "blocked_countries": [],
+    "enable_behavior_monitoring": true,
+    "enable_geoip_filtering": true,
+    "prompt_for_unknown_connections": true,
+    "blocked_count": 0,
+    
+    "dialog_analysis": {
+        "enable_dialog_tree_construction": true,
+        "enable_dialog_minimization": false,
+        "enable_dialog_diffing": true,
+        "enable_attack_detection": true,
+        "enable_behavioral_clustering": true,
+        
+        "minimization": {
+            "ip_pool_size": 100,
+            "vpn_config": "~/.config/firewall/vpn_endpoints.json",
+            "max_minimization_time": 300,
+            "enable_geographic_distribution_test": true,
+            "reset_method": "ip_rotation"
+        },
+        
+        "diffing": {
+            "similarity_threshold": 0.7,
+            "identical_threshold": 1.0,
+            "clustering_threshold": 0.8,
+            "max_dialogs_per_cluster": 50
+        },
+        
+        "attack_detection": {
+            "signatures_file": "~/.config/firewall/attack_signatures.json",
+            "enable_signature_generation": true,
+            "similarity_threshold": 0.8,
+            "confidence_threshold": 0.9,
+            "auto_update_signatures": true
+        },
+        
+        "milking": {
+            "enable_drive_by_milkers": false,
+            "milker_configs": "~/.config/firewall/milker_configs.json",
+            "collection_interval_minutes": 60,
+            "max_concurrent_milkers": 10,
+            "malware_storage_path": "~/.config/firewall/collected_malware/"
+        },
+        
+        "cookie_testing": {
+            "enable_cookie_replay_testing": false,
+            "test_domains_file": "~/.config/firewall/test_domains.txt",
+            "test_interval_hours": 24,
+            "max_test_duration_days": 30,
+            "test_credentials": {
+                "username": "testuser",
+                "password": "testpass123"
+            }
+        },
+        
+        "performance": {
+            "max_active_dialogs": 1000,
+            "dialog_timeout_minutes": 30,
+            "max_dialog_tree_depth": 10,
+            "enable_dialog_compression": true,
+            "periodic_cleanup_interval": 3600
+        }
+    },
+    
+    "enhanced_monitoring": {
+        "capture_full_http_payloads": false,
+        "enable_ssl_inspection": false,
+        "track_application_dialogs": true,
+        "behavior_anomaly_threshold": 0.3,
+        "min_dialogs_for_behavior_profile": 10
+    },
+    
+    "security_goals": {
+        "malware_download": {
+            "enabled": true,
+            "file_extensions": [".exe", ".dll", ".bin", ".scr"],
+            "min_file_size": 1024,
+            "check_pe_headers": true
+        },
+        "sql_injection": {
+            "enabled": true,
+            "error_patterns": ["SQL syntax", "mysql_fetch", "ORA-", "SQLSTATE"]
+        },
+        "xss_attack": {
+            "enabled": true,
+            "script_patterns": ["<script", "javascript:", "onerror="]
+        },
+        "authentication_bypass": {
+            "enabled": true,
+            "success_indicators": ["welcome", "dashboard", "profile", "logout"]
+        },
+        "command_injection": {
+            "enabled": true,
+            "command_patterns": [";", "&&", "||", "|", "`"]
+        }
+    },
+    
+    "reporting": {
+        "enable_daily_reports": true,
+        "enable_attack_summaries": true,
+        "enable_behavior_reports": true,
+        "report_output_dir": "~/.config/firewall/reports/",
+        "report_formats": ["json", "html"],
+        "email_reports": false
+    },
+    
+    "integration": {
+        "enable_siem_export": false,
+        "siem_endpoint": "https://siem.company.com/api/events",
+        "enable_threat_intelligence": false,
+        "threat_intel_feeds": [],
+        "enable_sandbox_integration": false,
+        "sandbox_endpoint": "https://sandbox.company.com/api/analyze"
+    }
+}

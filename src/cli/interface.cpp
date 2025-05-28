@@ -439,26 +439,26 @@ namespace Firewall {
 
     void Interface::addRule(const std::string& app, const std::string& action, 
         const std::string& address, int port) {
-Rule rule;
-rule.application = app;
-rule.action = action;
-rule.direction = "outbound"; // Default direction
-rule.protocol = "tcp";       // Default protocol
-rule.remote_address = address;
-rule.remote_port = port;
-rule.enabled = true;
+        Rule rule;
+        rule.application = app;
+        rule.action = action;
+        rule.direction = "outbound"; // Default direction
+        rule.protocol = "tcp";       // Default protocol
+        rule.remote_address = address;
+        rule.remote_port = port;
+        rule.enabled = true;
 
-bool success = monitor_->ruleManager_->addRule(rule);
+        bool success = monitor_->ruleManager_->addRule(rule);
 
-if (success) {
-std::cout << "Rule added successfully.\n";
-// Save rules to file
-std::string rulesFile = Config::getInstance().get<std::string>("rules_file", getDefaultRulesPath());
-monitor_->ruleManager_->saveRules(rulesFile);
-} else {
-std::cout << "Failed to add rule.\n";
-}
-}
+        if (success) {
+        std::cout << "Rule added successfully.\n";
+        // Save rules to file
+        std::string rulesFile = Config::getInstance().get<std::string>("rules_file", getDefaultRulesPath());
+        monitor_->ruleManager_->saveRules(rulesFile);
+        } else {
+        std::cout << "Failed to add rule.\n";
+        }
+    }
     
     void Interface::listRules() {
         std::cout << "Current Firewall Rules:\n"
