@@ -1,22 +1,22 @@
-#include "../../include/monitor/connection_monitor.hpp"
-#include "../../include/utils/logger.hpp"
-#include "../../include/utils/config.hpp"
-#include <stdexcept>
-#include <iostream>
-#include <netinet/ip.h>
-#include <netinet/tcp.h>
-#include <arpa/inet.h>
-#include <pcap/pcap.h>
+// #include "../../include/monitor/connection_monitor.hpp"
+// #include "../../include/utils/logger.hpp"
+// #include "../../include/utils/config.hpp"
+// #include <stdexcept>
+// #include <iostream>
+// #include <netinet/ip.h>
+// #include <netinet/tcp.h>
+// #include <arpa/inet.h>
+// #include <pcap/pcap.h>
 
-namespace Firewall {
+// namespace Firewall {
 
-    ConnectionMonitor::ConnectionMonitor() 
-        : handle_(nullptr), running_(false), ruleManager_(std::make_unique<RuleManager>()) {
-    }
+//     ConnectionMonitor::ConnectionMonitor() 
+//         : handle_(nullptr), running_(false), ruleManager_(std::make_unique<RuleManager>()) {
+//     }
     
-    ConnectionMonitor::~ConnectionMonitor() {
-        stop();
-    }
+//     ConnectionMonitor::~ConnectionMonitor() {
+//         stop();
+//     }
     
     // bool ConnectionMonitor::start() {
     //     char errbuf[PCAP_ERRBUF_SIZE];
@@ -159,6 +159,26 @@ namespace Firewall {
     //     std::cout << "Debug: pcap_loop exited\n";
     //     return true;
     // }
+#include "../../include/monitor/connection_monitor.hpp"
+#include "../../include/utils/logger.hpp"
+#include "../../include/utils/config.hpp"
+#include <stdexcept>
+#include <iostream>
+#include <netinet/ip.h>
+#include <netinet/tcp.h>
+#include <arpa/inet.h>
+#include <pcap/pcap.h>
+
+namespace Firewall {
+
+    ConnectionMonitor::ConnectionMonitor() 
+        : handle_(nullptr), running_(false), ruleManager_(std::make_unique<RuleManager>()) {
+    }
+    
+    ConnectionMonitor::~ConnectionMonitor() {
+        stop();
+    }
+    
     bool ConnectionMonitor::start() {
         std::cout << "Debug: ConnectionMonitor::start() called\n";
         char errbuf[PCAP_ERRBUF_SIZE];
@@ -273,10 +293,6 @@ namespace Firewall {
         return running_;
     }
     
-    // void ConnectionMonitor::packetCallback(u_char* user, const struct pcap_pkthdr* pkthdr, const u_char* packet) {
-    //     auto* monitor = reinterpret_cast<ConnectionMonitor*>(user);
-    //     monitor->processPacket(pkthdr, packet);
-    // }
     void ConnectionMonitor::packetCallback(u_char* user, const struct pcap_pkthdr* pkthdr, const u_char* packet) {
         static int count = 0;
         if (count++ % 100 == 0) {  // Only print every 100 packets to avoid console spam
@@ -292,8 +308,8 @@ namespace Firewall {
     }
     
     void ConnectionMonitor::processPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet) {
-        // Skip ethernet header
-        const struct ip* ip = reinterpret_cast<const struct ip*>(packet + 14);
+        // Skip ethernet header - FIXED: Use ::ip to refer to global namespace
+        const struct ::ip* ip = reinterpret_cast<const struct ::ip*>(packet + 14);
         
         char srcIP[INET_ADDRSTRLEN];
         char dstIP[INET_ADDRSTRLEN];
@@ -304,8 +320,17 @@ namespace Firewall {
         // For TCP packets, get port information
         if (ip->ip_p == IPPROTO_TCP) {
             const struct tcphdr* tcp = reinterpret_cast<const struct tcphdr*>(packet + 14 + (ip->ip_hl << 2));
-            int srcPort = ntohs(tcp->th_sport);
-            int dstPort = ntohs(tcp->th_dport);
+            
+            // Handle different tcphdr struct variations across systems
+            int srcPort, dstPort;
+            #ifdef __APPLE__
+                srcPort = ntohs(tcp->th_sport);
+                dstPort = ntohs(tcp->th_dport);
+            #else
+                // Linux might use different field names
+                srcPort = ntohs(tcp->source);
+                dstPort = ntohs(tcp->dest);
+            #endif
     
             Logger::get()->debug("TCP Connection: {}:{} -> {}:{}", 
                 srcIP, srcPort, dstIP, dstPort);
@@ -317,5 +342,109 @@ namespace Firewall {
             }
         }
     }
-    
+
+    // PUBLIC RULE MANAGER ACCESS METHODS - IMPLEMENTATION
+    bool ConnectionMonitor::addRule(const Rule& rule) {
+        if (ruleManager_) {
+            return ruleManager_->addRule(rule);
+        }
+        return false;
+    }
+
+    bool ConnectionMonitor::removeRule(const std::string& application) {
+        if (ruleManager_) {
+            return ruleManager_->removeRule(application);
+        }
+        return false;
+    }
+
+    bool ConnectionMonitor::loadRules(const std::string& filename) {
+        if (ruleManager_) {
+            return ruleManager_->loadRules(filename);
+        }
+        return false;
+    }
+
+    bool ConnectionMonitor::saveRules(const std::string& filename) {
+        if (ruleManager_) {
+            return ruleManager_->saveRules(filename);
+        }
+        return false;
+    }
+
+    const std::vector<Rule>& ConnectionMonitor::getRules() const {
+        if (ruleManager_) {
+            return ruleManager_->getRules();
+        }
+        // Return empty static vector if no rule manager
+        static std::vector<Rule> empty_rules;
+        return empty_rules;
+    }
+
+    bool ConnectionMonitor::hasRuleManager() const {
+        return ruleManager_ != nullptr;
+    }
+
+    // Stub implementations for missing methods
+    const std::deque<ConnectionInfo>& ConnectionMonitor::getActiveConnections() const {
+        return activeConnections_;
+    }
+
+    const std::deque<ConnectionInfo>& ConnectionMonitor::getBlockedConnections() const {
+        return blockedConnections_;
+    }
+
+    const TrafficStats& ConnectionMonitor::getCurrentStats() const {
+        return currentStats_;
+    }
+
+    const std::deque<TrafficStats>& ConnectionMonitor::getTrafficHistory() const {
+        return trafficHistory_;
+    }
+
+    void ConnectionMonitor::staticPacketCallback(u_char* user, const struct pcap_pkthdr* pkthdr, const u_char* packet) {
+        packetCallback(user, pkthdr, packet);
+    }
+
+    // Stub implementations for protected methods - FIXED: Use ::ip 
+    void ConnectionMonitor::processTCPPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet, 
+                                           const struct ::ip* ip, const char* srcIP, const char* dstIP) {
+        // Implementation placeholder
+    }
+
+    void ConnectionMonitor::processUDPPacket(const struct pcap_pkthdr* pkthdr, const u_char* packet, 
+                                           const struct ::ip* ip, const char* srcIP, const char* dstIP) {
+        // Implementation placeholder
+    }
+
+    std::string ConnectionMonitor::getLocalIPAddress() {
+        return "127.0.0.1"; // Placeholder
+    }
+
+    void ConnectionMonitor::addToActiveConnections(const std::string& app, const std::string& remoteIP, 
+                                                 int remotePort, const std::string& protocol) {
+        // Implementation placeholder
+    }
+
+    void ConnectionMonitor::addToRecentBlocks(const std::string& app, const std::string& remoteIP, 
+                                            int remotePort, const std::string& reason) {
+        // Implementation placeholder
+    }
+
+    void ConnectionMonitor::updateTrafficStats(size_t packetSize) {
+        // Implementation placeholder
+    }
+
+    void ConnectionMonitor::startStatsCollection() {
+        // Implementation placeholder
+    }
+
+    void ConnectionMonitor::stopStatsCollection() {
+        // Implementation placeholder
+    }
+
+    void ConnectionMonitor::collectStats() {
+        // Implementation placeholder
+    }
+
     } // namespace Firewall
