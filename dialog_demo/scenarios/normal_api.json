@@ -1,0 +1,26 @@
+{
+  "scenario": "Normal API Usage",
+  "description": "Mobile app making legitimate API calls",
+  "connections": [
+    {
+      "src_ip": "192.168.1.75",
+      "src_port": 52400,
+      "dst_ip": "api.service.com", 
+      "dst_port": 443,
+      "protocol": "tcp",
+      "app_protocol": "https",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "192.168.1.75",
+          "raw_data": "GET /api/v1/user/profile HTTP/1.1\r\nHost: api.service.com\r\nAuthorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjM0NTY3ODkwLCJuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\r\nUser-Agent: MobileApp/2.1.0 (iOS 15.0)\r\nAccept: application/json\r\n\r\n"
+        },
+        {
+          "direction": "response",
+          "sender_ip": "api.service.com",
+          "raw_data": "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nCache-Control: private, max-age=300\r\nContent-Length: 187\r\n\r\n{\"user_id\":1234567890,\"name\":\"John Doe\",\"email\":\"john.doe@example.com\",\"preferences\":{\"notifications\":true,\"theme\":\"dark\"},\"last_login\":\"2024-01-15T09:30:00Z\"}"
+        }
+      ]
+    }
+  ]
+}

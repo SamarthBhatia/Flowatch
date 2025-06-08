@@ -1,0 +1,638 @@
+Debug: Initializing logger...
+Debug: Creating CLI interface...
+[2025-06-06 19:08:06.426] [firewall] [info] Config loaded from: /Users/samarthbhatia/.config/firewall/config.json
+[2025-06-06 19:08:06.426] [firewall] [info] Clustering dialogs from directory: dialog_demo/clustering
+[2025-06-06 19:08:06.426] [firewall] [debug] Loading dialog from dialog_demo/clustering/xss_basic.json
+[2025-06-06 19:08:06.426] [firewall] [debug] Added connection: 127.0.0.1:80 -> target.com:80 (http)
+[2025-06-06 19:08:06.426] [firewall] [debug] Loaded dialog with 1 connections
+[2025-06-06 19:08:06.426] [firewall] [debug] Loading dialog from dialog_demo/clustering/xss_advanced.json
+[2025-06-06 19:08:06.426] [firewall] [debug] Added connection: 127.0.0.1:80 -> target.com:80 (http)
+[2025-06-06 19:08:06.426] [firewall] [debug] Loaded dialog with 1 connections
+[2025-06-06 19:08:06.426] [firewall] [debug] Loading dialog from dialog_demo/clustering/normal_api.json
+[2025-06-06 19:08:06.426] [firewall] [debug] Added connection: 127.0.0.1:80 -> target.com:80 (http)
+[2025-06-06 19:08:06.426] [firewall] [debug] Loaded dialog with 1 connections
+[2025-06-06 19:08:06.426] [firewall] [debug] Loading dialog from dialog_demo/clustering/sqli_original.json
+[2025-06-06 19:08:06.426] [firewall] [debug] Added connection: 127.0.0.1:80 -> target.com:80 (http)
+[2025-06-06 19:08:06.426] [firewall] [debug] Loaded dialog with 1 connections
+[2025-06-06 19:08:06.426] [firewall] [debug] Loading dialog from dialog_demo/clustering/command_injection.json
+[2025-06-06 19:08:06.426] [firewall] [debug] Added connection: 127.0.0.1:80 -> target.com:80 (http)
+[2025-06-06 19:08:06.426] [firewall] [debug] Loaded dialog with 1 connections
+[2025-06-06 19:08:06.426] [firewall] [debug] Loading dialog from dialog_demo/clustering/sqli_variant2.json
+[2025-06-06 19:08:06.426] [firewall] [debug] Added connection: 127.0.0.1:80 -> target.com:80 (http)
+[2025-06-06 19:08:06.426] [firewall] [debug] Loaded dialog with 1 connections
+[2025-06-06 19:08:06.426] [firewall] [debug] Loading dialog from dialog_demo/clustering/sqli_variant1.json
+[2025-06-06 19:08:06.426] [firewall] [debug] Added connection: 127.0.0.1:80 -> target.com:80 (http)
+[2025-06-06 19:08:06.426] [firewall] [debug] Loaded dialog with 1 connections
+[2025-06-06 19:08:06.426] [firewall] [debug] Loading dialog from dialog_demo/clustering/normal_shopping.json
+[2025-06-06 19:08:06.426] [firewall] [debug] Added connection: 127.0.0.1:80 -> target.com:80 (http)
+[2025-06-06 19:08:06.426] [firewall] [debug] Loaded dialog with 1 connections
+[2025-06-06 19:08:06.426] [firewall] [info] Loaded 8 dialogs from directory dialog_demo/clustering
+Loaded 8 dialogs
+[2025-06-06 19:08:06.426] [firewall] [info] Starting aggressive clustering of 8 dialogs
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.426] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.426] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.426] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.426] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.426] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.426] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.426] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.426] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.426] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [info] Aggressive clustering completed: 8 dialogs -> 8 clusters
+
+Dialog Clustering Results:
+=========================
+Input dialogs: 8
+Generated clusters: 8
+
+Cluster  1:   1 dialogs
+Cluster  2:   1 dialogs
+Cluster  3:   1 dialogs
+Cluster  4:   1 dialogs
+Cluster  5:   1 dialogs
+Cluster  6:   1 dialogs
+Cluster  7:   1 dialogs
+Cluster  8:   1 dialogs
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.427] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.427] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.427] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.428] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.428] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.428] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.428] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.429] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.429] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.429] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.429] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.429] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.429] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.429] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.429] [firewall] [debug] Dialog alignment completed with similarity 0.364
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:06.429] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:06.429] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:06.429] [firewall] [debug] Dialog alignment completed with similarity 0.364
+
+Clustering Quality:
+  Silhouette width: 1.000
+  Quality: EXCELLENT

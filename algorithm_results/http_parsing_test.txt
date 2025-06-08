@@ -1,0 +1,29 @@
+Debug: Initializing logger...
+Debug: Creating CLI interface...
+[2025-06-06 19:08:18.481] [firewall] [info] Config loaded from: /Users/samarthbhatia/.config/firewall/config.json
+[2025-06-06 19:08:18.481] [firewall] [info] Comparing dialogs algorithm_test_data/complex/http_features.json and algorithm_test_data/simple/identical_base.json
+[2025-06-06 19:08:18.481] [firewall] [debug] Loading dialog from algorithm_test_data/complex/http_features.json
+[2025-06-06 19:08:18.481] [firewall] [debug] Added connection: 127.0.0.1:80 -> target.com:80 (http)
+[2025-06-06 19:08:18.481] [firewall] [debug] Loaded dialog with 1 connections
+[2025-06-06 19:08:18.481] [firewall] [debug] Loading dialog from algorithm_test_data/simple/identical_base.json
+[2025-06-06 19:08:18.481] [firewall] [debug] Added connection: 127.0.0.1:80 -> target.com:80 (http)
+[2025-06-06 19:08:18.482] [firewall] [debug] Loaded dialog with 1 connections
+[2025-06-06 19:08:18.482] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:18.482] [firewall] [debug] Extracted 1 RRPs from dialog
+[2025-06-06 19:08:18.482] [firewall] [debug] Aligning dialogs with 1 and 1 RRPs
+[2025-06-06 19:08:18.482] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:18.482] [firewall] [debug] Parsed HTTP request: GET /
+[2025-06-06 19:08:18.482] [firewall] [debug] Hungarian alignment completed with 1 pairs
+[2025-06-06 19:08:18.482] [firewall] [debug] Dialog alignment completed with similarity 0.364
+Dialog Comparison Results:
+=========================
+Overall similarity: 0.364
+Aligned pairs: 1
+
+Status breakdown:
+  Identical: 0
+  Changed: 0
+  New: 1
+
+Detailed alignment:
+Pair  0: NEW       (similarity: 0.364)

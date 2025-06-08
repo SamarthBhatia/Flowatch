@@ -1,0 +1,26 @@
+{
+  "scenario": "Basic XSS Attack",
+  "description": "Simple script injection in comment form",
+  "connections": [
+    {
+      "src_ip": "10.0.1.100",
+      "src_port": 45200,
+      "dst_ip": "forum.example.com",
+      "dst_port": 80,
+      "protocol": "tcp",
+      "app_protocol": "http",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "10.0.1.100",
+          "raw_data": "POST /comment HTTP/1.1\r\nHost: forum.example.com\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 87\r\nReferer: http://forum.example.com/post/123\r\n\r\nname=hacker&email=test@evil.com&comment=<script>alert('XSS_Attack')</script>"
+        },
+        {
+          "direction": "response",
+          "sender_ip": "forum.example.com",
+          "raw_data": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 245\r\n\r\n<html><body><h2>Comment Posted</h2><div class='comment'><strong>hacker</strong>: <script>alert('XSS_Attack')</script></div></body></html>"
+        }
+      ]
+    }
+  ]
+}

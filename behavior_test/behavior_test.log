@@ -1,0 +1,24 @@
+=== STARTING: Geographic Anomalies Anomaly Script ===
+🚨 ANOMALY: Unusual geographic patterns
+Connecting to foreign IP: 8.8.8.8
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=120 time=6.265 ms
+
+--- 8.8.8.8 ping statistics ---
+1 packets transmitted, 1 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 6.265/6.265/6.265/nan ms
+Connecting to foreign IP: 1.1.1.1
+PING 1.1.1.1 (1.1.1.1): 56 data bytes
+64 bytes from 1.1.1.1: icmp_seq=0 ttl=57 time=16.556 ms
+
+--- 1.1.1.1 ping statistics ---
+1 packets transmitted, 1 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 16.556/16.556/16.556/0.000 ms
+Connecting to foreign IP: 208.67.222.222
+PING 208.67.222.222 (208.67.222.222): 56 data bytes
+64 bytes from 208.67.222.222: icmp_seq=0 ttl=56 time=25.153 ms
+
+--- 208.67.222.222 ping statistics ---
+1 packets transmitted, 1 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 25.153/25.153/25.153/nan ms
+=== COMPLETED: Geographic Anomalies Anomaly Script ===

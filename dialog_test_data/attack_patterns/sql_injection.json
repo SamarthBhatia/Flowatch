@@ -1,0 +1,24 @@
+{
+  "connections": [
+    {
+      "src_ip": "192.168.1.100",
+      "src_port": 54327,
+      "dst_ip": "vulnerable.site.com", 
+      "dst_port": 80,
+      "protocol": "tcp",
+      "app_protocol": "http",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "192.168.1.100",
+          "raw_data": "GET /search?q=admin' OR '1'='1 HTTP/1.1\r\nHost: vulnerable.site.com\r\n\r\n"
+        },
+        {
+          "direction": "response",
+          "sender_ip": "vulnerable.site.com", 
+          "raw_data": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<html><body>mysql_fetch_array() error: You have an error in your SQL syntax</body></html>"
+        }
+      ]
+    }
+  ]
+}

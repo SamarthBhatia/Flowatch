@@ -1,0 +1,24 @@
+{
+  "connections": [
+    {
+      "src_ip": "192.168.1.100",
+      "src_port": 54328,
+      "dst_ip": "vulnerable.site.com",
+      "dst_port": 80, 
+      "protocol": "tcp",
+      "app_protocol": "http",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "192.168.1.100",
+          "raw_data": "POST /comment HTTP/1.1\r\nHost: vulnerable.site.com\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\ncomment=<script>alert('XSS')</script>"
+        },
+        {
+          "direction": "response",
+          "sender_ip": "vulnerable.site.com",
+          "raw_data": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<html><body>Comment: <script>alert('XSS')</script></body></html>"
+        }
+      ]
+    }
+  ]
+}

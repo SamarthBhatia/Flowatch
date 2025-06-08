@@ -1,0 +1,13 @@
+{
+  "connections": [
+    {
+      "src_ip": "127.0.0.1",
+      "src_port": 80,
+      "dst_ip": "target.com",
+      "dst_port": 80,
+      "protocol": "tcp",
+      "app_protocol": "http",
+      "messages": 1
+    }
+  ]
+}
