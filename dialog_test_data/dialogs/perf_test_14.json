@@ -1,0 +1,24 @@
+{
+  "connections": [
+    {
+      "src_ip": "192.168.1.100",
+      "src_port": 54314,
+      "dst_ip": "httpbin.org",
+      "dst_port": 80,
+      "protocol": "tcp",
+      "app_protocol": "http",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "192.168.1.100",
+          "raw_data": "GET /ip HTTP/1.1\r\nHost: httpbin.org\r\nUser-Agent: curl/7.68.0\r\nAccept: */*\r\n\r\n"
+        },
+        {
+          "direction": "response", 
+          "sender_ip": "httpbin.org",
+          "raw_data": "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: 32\r\n\r\n{\n  \"origin\": \"192.168.1.100\"\n}"
+        }
+      ]
+    }
+  ]
+}

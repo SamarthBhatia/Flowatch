@@ -1,0 +1,22 @@
+Debug: Initializing logger...
+Debug: Creating CLI interface...
+[2025-06-06 19:08:06.398] [firewall] [info] Config loaded from: /Users/samarthbhatia/.config/firewall/config.json
+[2025-06-06 19:08:06.399] [firewall] [info] Minimizing dialog from dialog_demo/attacks/command_injection.json to demo_results/minimal_command_chain.json
+[2025-06-06 19:08:06.399] [firewall] [debug] Loading dialog from dialog_demo/attacks/command_injection.json
+[2025-06-06 19:08:06.399] [firewall] [debug] Added connection: 127.0.0.1:80 -> target.com:80 (http)
+[2025-06-06 19:08:06.399] [firewall] [debug] Loaded dialog with 1 connections
+[2025-06-06 19:08:06.399] [firewall] [info] Starting network dialog minimization
+[2025-06-06 19:08:06.399] [firewall] [info] Level 1: Minimizing connections
+[2025-06-06 19:08:06.399] [firewall] [debug] Only one connection, skipping connection minimization
+[2025-06-06 19:08:06.399] [firewall] [info] Level 2: Minimizing messages
+[2025-06-06 19:08:06.399] [firewall] [debug] Only one message, skipping message minimization
+[2025-06-06 19:08:06.399] [firewall] [info] Level 3: Minimizing fields
+[2025-06-06 19:08:06.399] [firewall] [debug] Starting field minimization
+[2025-06-06 19:08:06.399] [firewall] [info] Field minimization completed
+[2025-06-06 19:08:06.399] [firewall] [info] Dialog minimization completed
+[2025-06-06 19:08:06.399] [firewall] [debug] Saving dialog to demo_results/minimal_command_chain.json
+[2025-06-06 19:08:06.399] [firewall] [debug] Dialog saved successfully
+Dialog minimization completed successfully.
+Original connections: 1
+Minimized connections: 1
+Reduction: 0%

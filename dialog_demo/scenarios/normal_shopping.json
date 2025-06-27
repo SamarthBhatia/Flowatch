@@ -1,0 +1,26 @@
+{
+  "scenario": "Normal E-commerce Browsing",
+  "description": "Legitimate user browsing product catalog",
+  "connections": [
+    {
+      "src_ip": "192.168.1.50",
+      "src_port": 52341,
+      "dst_ip": "shop.example.com",
+      "dst_port": 80,
+      "protocol": "tcp",
+      "app_protocol": "http",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "192.168.1.50",
+          "raw_data": "GET /products?category=electronics&page=1 HTTP/1.1\r\nHost: shop.example.com\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9\r\nAccept-Language: en-US,en;q=0.5\r\nCookie: session=legitimate_user_session\r\n\r\n"
+        },
+        {
+          "direction": "response",
+          "sender_ip": "shop.example.com",
+          "raw_data": "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nSet-Cookie: cart_id=cart123456\r\nContent-Length: 2340\r\n\r\n<html><head><title>Electronics - Shop</title></head><body><h1>Electronics Catalog</h1><div class='products'><div class='product'>Laptop - $999</div><div class='product'>Phone - $599</div></div></body></html>"
+        }
+      ]
+    }
+  ]
+}

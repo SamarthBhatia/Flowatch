@@ -1,0 +1,49 @@
+{
+  "connections": [
+    {
+      "src_ip": "192.168.1.100",
+      "src_port": 54324,
+      "dst_ip": "cdn.example.com",
+      "dst_port": 80,
+      "protocol": "tcp", 
+      "app_protocol": "http",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "192.168.1.100",
+          "raw_data": "GET /style.css HTTP/1.1\r\nHost: cdn.example.com\r\nReferer: https://example.com/\r\n\r\n"
+        }
+      ]
+    },
+    {
+      "src_ip": "192.168.1.100", 
+      "src_port": 54325,
+      "dst_ip": "api.example.com",
+      "dst_port": 443,
+      "protocol": "tcp",
+      "app_protocol": "https", 
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "192.168.1.100",
+          "raw_data": "GET /data HTTP/1.1\r\nHost: api.example.com\r\nAuthorization: Bearer token\r\n\r\n"
+        }
+      ]
+    },
+    {
+      "src_ip": "192.168.1.100",
+      "src_port": 54326, 
+      "dst_ip": "tracker.ads.com",
+      "dst_port": 80,
+      "protocol": "tcp",
+      "app_protocol": "http",
+      "messages": [
+        {
+          "direction": "request", 
+          "sender_ip": "192.168.1.100",
+          "raw_data": "GET /track?id=user123 HTTP/1.1\r\nHost: tracker.ads.com\r\n\r\n"
+        }
+      ]
+    }
+  ]
+}

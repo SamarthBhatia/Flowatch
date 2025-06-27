@@ -1,0 +1,24 @@
+{
+  "connections": [
+    {
+      "src_ip": "192.168.1.100",
+      "src_port": 54322,
+      "dst_ip": "api.example.com",
+      "dst_port": 443,
+      "protocol": "tcp",
+      "app_protocol": "https",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "192.168.1.100", 
+          "raw_data": "POST /login HTTP/1.1\r\nHost: api.example.com\r\nContent-Type: application/json\r\nAuthorization: Bearer token123\r\nContent-Length: 45\r\n\r\n{\"username\":\"admin\",\"password\":\"secret123\"}"
+        },
+        {
+          "direction": "response",
+          "sender_ip": "api.example.com",
+          "raw_data": "HTTP/1.1 200 OK\r\nSet-Cookie: session=abc123; HttpOnly\r\nContent-Type: application/json\r\n\r\n{\"status\":\"success\",\"token\":\"jwt_token_here\"}"
+        }
+      ]
+    }
+  ]
+}

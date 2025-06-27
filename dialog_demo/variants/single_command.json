@@ -1,0 +1,20 @@
+{
+  "scenario": "Single Command Injection",
+  "connections": [
+    {
+      "src_ip": "10.0.1.100",
+      "src_port": 45302,
+      "dst_ip": "admin.company.com",
+      "dst_port": 80,
+      "protocol": "tcp",
+      "app_protocol": "http",
+      "messages": [
+        {
+          "direction": "request",
+          "sender_ip": "10.0.1.100",
+          "raw_data": "POST /system/ping HTTP/1.1\r\nHost: admin.company.com\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 25\r\n\r\nhost=8.8.8.8; whoami"
+        }
+      ]
+    }
+  ]
+}
