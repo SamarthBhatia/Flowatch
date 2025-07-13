@@ -3,12 +3,15 @@
 A robust, intelligent network firewall for Linux systems with application behavior analysis, geographical filtering, and traffic monitoring capabilities.
 
 ## 🚀 Features
-✅ **Application-Aware Filtering**: Detect and control network traffic by application  
-✅ **Behavior Analysis**: Learn normal application behavior patterns and detect anomalies  
-✅ **GeoIP Filtering**: Block connections to/from specific countries  
-✅ **Traffic Monitoring**: Visualize and analyze your network traffic  
-✅ **Comprehensive Rule System**: Create detailed rules based on multiple parameters  
-✅ **Command Line Interface**: Simple, powerful CLI for control and configuration  
+- ✅ **Application-Aware Filtering**: Detect and control network traffic by application  
+- ✅ **Behavior Analysis**: Learn normal application behavior patterns and detect anomalies  
+- ✅ **GeoIP Filtering**: Block connections to/from specific countries  
+- ✅ **Traffic Monitoring**: Visualize and analyze your network traffic  
+- ✅ **Comprehensive Rule System**: Create detailed rules based on multiple parameters  
+- ✅ **Command Line Interface**: Simple, powerful CLI for control and configuration  
+- ✅ **Complete Dialog Tree System**: Hierarchical network conversation representation  
+- ✅ **Advanced Dialog Diffing**: Similarity analysis with 11+ feature types  
+- ✅ **Multi-Level Minimization**: 3-stage delta debugging (connections → messages → fields)
 
 ---
 
@@ -38,6 +41,9 @@ make -j$(nproc)
 
 # Install
 sudo make install
+
+# Or instead of manually making a build directory,
+./build.sh
 ```
 
 ---
@@ -98,6 +104,30 @@ list-rules
 status
 ```
 
+### Dialog Testing Commands
+
+```bash
+# Build your system
+./build.sh
+
+# Basic integration test
+./test_integration.sh
+
+# Advanced dialog testing suite
+chmod +x dialog_testing_suite.sh
+./dialog_testing_suite.sh
+
+# Algorithm validation (precision testing)
+chmod +x algorithm_validation_tests.sh
+./algorithm_validation_tests.sh
+
+# Real-world concepts demonstration
+chmod +x dialog_concept_demo.sh
+./dialog_concept_demo.sh
+
+# Interactive exploration
+./dialog_concept_demo.sh --interactive
+```
 ### 📌 Interactive Mode
 
 When running `firewall start`, the program enters interactive mode with a command prompt where you can enter commands directly:
@@ -144,3 +174,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [spdlog](https://github.com/gabime/spdlog)
 - [nlohmann/json](https://github.com/nlohmann/json)
 - [MaxMind GeoLite2](https://dev.maxmind.com/geoip/geoip2/geolite2/) for GeoIP database support
+
+This project builds upon techniques introduced in:
+
+> **Network Dialog Minimization and Network Dialog Diffing:  
+> Two Novel Primitives for Network Security Applications**  
+> M. Zubair Rafique, Juan Caballero, Christophe Huygens & Wouter Joosen  
+> IMDEA Software Institute Technical Report TR-IMDEA-SW-2014-001, March 2014  
+> [https://software.imdea.org/~juanca/papers/TR-IMDEA-SW-2014-001.pdf](https://software.imdea.org/~juanca/papers/TR-IMDEA-SW-2014-001.pdf)
